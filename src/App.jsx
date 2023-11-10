@@ -41,7 +41,7 @@ const dummyData = [
   {
     id: 5,
     username: "MIKE",
-    text: "I love Ahri",
+    text: "I love Ahri! Marry me Ahri!! Marry me Ahri!! Marry me Ahri!! Marry me Ahri!! Marry me Ahri!! Marry me Ahri!! Marry me Ahri!! Marry me Ahri!! ",
     foward: "AHRI",
     portrait: chad,
   },
@@ -49,11 +49,18 @@ const dummyData = [
 
 function App() {
   const [fanLetters, setFanLetters] = useState(dummyData);
+  const [chosenMemeber, setChosenMember] = useState("ALL");
+
   console.log(fanLetters);
   return (
     <>
       <GlobalStyle />
-      <Router fanLetters={fanLetters} setFanLetters={setFanLetters} />
+      <Router
+        fanLetters={fanLetters}
+        setFanLetters={setFanLetters}
+        chosenMemeber={chosenMemeber}
+        setChosenMember={setChosenMember}
+      />
     </>
   );
 }

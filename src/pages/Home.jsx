@@ -12,13 +12,13 @@ const StHomeContainer = styled.section`
   width: 100%;
 `;
 
-function Home({ fanLetters, setFanLetters }) {
+function Home({ fanLetters, setFanLetters, chosenMemeber }) {
   const navigate = useNavigate();
-  const [chosenMemeber, setChosenMember] = useState("AHRI");
   return (
     <StHomeContainer>
+      <p>개발용 임시 : {chosenMemeber}</p>
       <SubmitLetter />
-      <Letters fanLetters={fanLetters} />
+      <Letters fanLetters={fanLetters} chosenMemeber={chosenMemeber} />
       <button
         onClick={() => {
           navigate("/detail");

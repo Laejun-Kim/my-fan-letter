@@ -4,16 +4,25 @@ import Home from "pages/Home";
 import Detail from "pages/Detail";
 import Header from "components/Header";
 
-const Router = ({ fanLetters, setFanLetters }) => {
+const Router = ({
+  fanLetters,
+  setFanLetters,
+  chosenMemeber,
+  setChosenMember,
+}) => {
   return (
     <BrowserRouter>
       <Layout>
-        <Header />
+        <Header setChosenMember={setChosenMember} />
         <Routes>
           <Route
             path="/"
             element={
-              <Home fanLetters={fanLetters} setFanLetters={setFanLetters} />
+              <Home
+                fanLetters={fanLetters}
+                setFanLetters={setFanLetters}
+                chosenMemeber={chosenMemeber}
+              />
             }
           />
           <Route path="detail" element={<Detail />} />

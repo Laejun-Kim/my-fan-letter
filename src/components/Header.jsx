@@ -25,19 +25,57 @@ const StMemberSelect = styled.ul`
   li {
     font-size: 1.5rem;
     color: white;
-    background-color: rgba(10);
+    background-color: rgba(0, 0, 0, 0.3);
+
+    width: 150px;
+    padding: 5px;
+    text-align: center;
+    user-select: none;
+    cursor: pointer;
+
+    &:hover {
+      scale: 1.1;
+      background-color: rgba(0, 0, 0, 0.3);
+      color: white;
+    }
   }
 `;
 
-function Header() {
+function Header({ setChosenMember }) {
+  function handleClick(event) {
+    // console.log(event.target.textContent);
+    let member;
+    switch (event.target.textContent) {
+      case "전체보기":
+        member = "ALL";
+        break;
+      case "아칼리":
+        member = "AKALI";
+        break;
+      case "아리":
+        member = "AHRI";
+        break;
+      case "이블린":
+        member = "EVELYN";
+        break;
+      case "카이사":
+        member = "KAISA";
+        break;
+    }
+    setChosenMember(member);
+  }
+  const tempArr = ["전체보기", "아칼리", "아리", "이블린", "카이사"];
   return (
     <StHeaderContainer>
       <StHeaderTitle>K/DA 팬레터 사이트</StHeaderTitle>
       <StMemberSelect>
-        <li>아칼리</li>
-        <li>아리</li>
-        <li>이블린</li>
-        <li>카이사</li>
+        {tempArr.map((item) => {
+          return (
+            <li key={item} onClick={handleClick}>
+              {item}
+            </li>
+          );
+        })}
       </StMemberSelect>
     </StHeaderContainer>
   );
