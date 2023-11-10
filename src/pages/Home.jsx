@@ -14,6 +14,7 @@ const StHomeContainer = styled.section`
 
 function Home({ fanLetters, setFanLetters }) {
   const navigate = useNavigate();
+  const [chosenMemeber, setChosenMember] = useState("AHRI");
   return (
     <StHomeContainer>
       <SubmitLetter />

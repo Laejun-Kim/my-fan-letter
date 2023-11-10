@@ -11,6 +11,7 @@ const StLetterDiv = styled.div`
   border: 1px solid red;
   width: 100%;
   text-align: center;
+  margin-top: 10px;
   img {
     width: 70px;
     height: 70px;

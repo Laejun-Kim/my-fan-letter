@@ -26,7 +26,7 @@ const dummyData = [
   },
   {
     id: 3,
-    username: "탑신병자",
+    username: "수풀속의 남자",
     text: "이블린님 탑갱 안오시나요?",
     foward: "EVELYN",
     portrait: garen,
