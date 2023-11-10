@@ -35,10 +35,10 @@ function SubmitLetter() {
       <span>
         <label htmlFor="toWhom">누구에게 보내는 메시지인가요?</label>
         <select name="" id="toWhom">
-          <option value="">아칼리</option>
-          <option value="">아리</option>
-          <option value="">이블린</option>
-          <option value="">카이사</option>
+          <option value="AKALI">아칼리</option>
+          <option value="AHRI">아리</option>
+          <option value="EVELYN">이블린</option>
+          <option value="KAISA">카이사</option>
         </select>
       </span>
       <button>제출하기</button>

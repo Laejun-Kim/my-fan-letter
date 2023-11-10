@@ -7,9 +7,18 @@ const StLetters = styled.div`
   width: 80%;
 `;
 const StLetterDiv = styled.div`
+  display: flex;
   border: 1px solid red;
   width: 100%;
   text-align: center;
+  img {
+    width: 70px;
+    height: 70px;
+    margin-right: 10px;
+  }
+  /* &:hover {
+    scale: 1.1;
+  } */
 `;
 
 function Letters({ fanLetters }) {
@@ -19,11 +28,14 @@ function Letters({ fanLetters }) {
       {fanLetters.map((letter) => {
         return (
           <StLetterDiv>
-            <p>To. {letter.foward}</p>
-            <br />
-            <p>By. {letter.username}</p>
-            <br />
-            <p>{letter.text}</p>
+            <img src={letter.portrait} alt="" />
+            <div>
+              <p>By. {letter.username}</p>
+              <br />
+              <p>To. {letter.foward}</p>
+              <br />
+              <p>{letter.text}</p>
+            </div>
           </StLetterDiv>
         );
       })}
