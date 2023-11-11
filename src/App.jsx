@@ -31,13 +31,13 @@ const dummyData = [
     foward: "EVELYN",
     portrait: garen,
   },
-  {
-    id: 4,
-    username: "서폿안주면던짐",
-    text: "아이고 우리 카이사 이쁘게 잘 컸네~",
-    foward: "KAISA",
-    portrait: sona,
-  },
+  // {
+  //   id: 4,
+  //   username: "서폿안주면던짐",
+  //   text: "아이고 우리 카이사 이쁘게 잘 컸네~",
+  //   foward: "KAISA",
+  //   portrait: sona,
+  // },
   {
     id: 5,
     username: "MIKE",

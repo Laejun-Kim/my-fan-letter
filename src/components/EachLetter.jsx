@@ -5,7 +5,7 @@ const StLetterDiv = styled.div`
   display: flex;
   border: 1px solid red;
   width: 100%;
-  text-align: center;
+  /* text-align: center; */
   margin-top: 10px;
   img {
     width: 70px;
