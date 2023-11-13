@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import headerbg from "assets/pic/kdaHeaderBg.jpg";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const StHeaderContainer = styled.section`
   width: 100%;
@@ -17,13 +17,14 @@ const StHeaderTitle = styled.h1`
   color: white;
   font-size: 3rem;
   text-shadow: 3px 0px black; //글자 잘 안보여서 넣은건데 더 좋은 방법있으면 ㄱㄱ
+  cursor: pointer;
 `;
 const StMemberSelect = styled.ul`
   /* display: flex; */
   gap: 20px;
   margin-top: 50px;
   display: ${(props) =>
-    props.shoulddisplay ? "flex" : "none"}; //detail에선 안보이게.
+    props.$shouldDisplay ? "flex" : "none"}; //detail page에선 안보이게.
 
   li {
     font-size: 1.5rem;
@@ -45,10 +46,9 @@ const StMemberSelect = styled.ul`
 `;
 
 function Header({ setChosenMember }) {
+  const navigate = useNavigate();
   const location = useLocation();
-  console.log(location.pathname);
-  let isathome = location.pathname === "/" ? true : false;
-  console.log(isathome);
+  let isAtHome = location.pathname === "/" ? true : false;
   function handleClick(event) {
     // console.log(event.target.textContent);
     let member;
@@ -72,10 +72,16 @@ function Header({ setChosenMember }) {
     setChosenMember(member);
   }
   const tempArr = ["전체보기", "아칼리", "아리", "이블린", "카이사"];
+
+  const titleClickHndlr = () => {
+    navigate("/");
+  };
   return (
     <StHeaderContainer>
-      <StHeaderTitle>K/DA 팬레터 사이트</StHeaderTitle>
-      <StMemberSelect shoulddisplay={isathome}>
+      <StHeaderTitle onClick={titleClickHndlr}>
+        K/DA 팬레터 사이트
+      </StHeaderTitle>
+      <StMemberSelect $shouldDisplay={isAtHome}>
         {tempArr.map((item) => {
           return (
             <li key={item} onClick={handleClick}>
