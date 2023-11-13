@@ -13,7 +13,10 @@ const Router = ({
   return (
     <BrowserRouter>
       <Layout>
-        <Header setChosenMember={setChosenMember} />
+        <Header
+          setChosenMember={setChosenMember}
+          chosenMemeber={chosenMemeber}
+        />
         <Routes>
           <Route
             path="/"

@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import headerbg from "assets/pic/kdaHeaderBg.jpg";
+import { useLocation } from "react-router-dom";
 
 const StHeaderContainer = styled.section`
   width: 100%;
@@ -42,6 +43,8 @@ const StMemberSelect = styled.ul`
 `;
 
 function Header({ setChosenMember }) {
+  const location = useLocation();
+  console.log(location.pathname);
   function handleClick(event) {
     // console.log(event.target.textContent);
     let member;
