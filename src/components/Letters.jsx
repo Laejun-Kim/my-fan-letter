@@ -14,9 +14,9 @@ const StLetters = styled.div`
   }
 `;
 
-function Letters({ fanLetters, chosenMemeber }) {
+function Letters({ fanLetters, chosenMember }) {
   let filteredLetter;
-  switch (chosenMemeber) {
+  switch (chosenMember) {
     case "ALL":
       filteredLetter = fanLetters;
       break;
@@ -36,7 +36,7 @@ function Letters({ fanLetters, chosenMemeber }) {
       break;
   }
 
-  console.log(chosenMemeber);
+  console.log(chosenMember);
   return (
     <StLetters>
       {filteredLetter.length === 0 && (

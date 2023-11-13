@@ -51,7 +51,7 @@ import dummyData from "fakeData.json";
 
 function App() {
   const [fanLetters, setFanLetters] = useState(dummyData);
-  const [chosenMemeber, setChosenMember] = useState("ALL");
+  const [chosenMember, setChosenMember] = useState("ALL");
 
   console.log(fanLetters);
   return (
@@ -60,7 +60,7 @@ function App() {
       <Router
         fanLetters={fanLetters}
         setFanLetters={setFanLetters}
-        chosenMemeber={chosenMemeber}
+        chosenMember={chosenMember}
         setChosenMember={setChosenMember}
       />
     </>

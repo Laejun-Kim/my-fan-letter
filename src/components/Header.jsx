@@ -1,13 +1,30 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import headerbg from "assets/pic/kdaHeaderBg.jpg";
+import headerAllbg from "assets/pic/kdaHeaderBg.jpg";
+import headerAhribg from "assets/pic/cropped-ahri.jpg";
+import headerAkalibg from "assets/pic/cropped-akali.jpg";
+import headerEvelynbg from "assets/pic/cropped-evelyn.jpg";
+import headerKaisabg from "assets/pic/cropped-kaisa.jpg";
 import { useLocation, useNavigate } from "react-router-dom";
 
 //styled-components
 const StHeaderContainer = styled.section`
   width: 100%;
   height: 250px;
-  background-image: url(${headerbg});
+  background-image: ${(props) => {
+    switch (props.chosenMember) {
+      case "AHRI":
+        return `url(${headerAhribg})`;
+      case "AKALI":
+        return `url(${headerAkalibg})`;
+      case "EVELYN":
+        return `url(${headerEvelynbg})`;
+      case "KAISA":
+        return `url(${headerKaisabg})`;
+      default:
+        return `url(${headerAllbg})`;
+    }
+  }};
   background-size: cover;
   display: flex;
   flex-direction: column;
@@ -17,6 +34,7 @@ const StHeaderContainer = styled.section`
 const StHeaderTitle = styled.h1`
   color: white;
   font-size: 3rem;
+  /* margin-right: 400px; */
   text-shadow: 3px 0px black; //글자 잘 안보여서 넣은건데 더 좋은 방법있으면 ㄱㄱ
   cursor: pointer;
 `;
@@ -49,10 +67,11 @@ const StTab = styled.li`
     `
       background-color: #971f977e;
       color: #fff;
+      border:1px solid white;
     `}
 `;
 
-function Header({ setChosenMember }) {
+function Header({ setChosenMember, chosenMember }) {
   const navigate = useNavigate();
   const location = useLocation();
   const [selectedTab, setSelectedTab] = useState(null);
@@ -84,10 +103,10 @@ function Header({ setChosenMember }) {
 
   const titleClickHndlr = () => {
     navigate("/");
-    setSelectedTab(null);
+    // setSelectedTab(null);
   };
   return (
-    <StHeaderContainer>
+    <StHeaderContainer chosenMember={chosenMember}>
       <StHeaderTitle onClick={titleClickHndlr}>
         K/DA 팬레터 사이트
       </StHeaderTitle>

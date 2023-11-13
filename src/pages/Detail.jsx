@@ -27,6 +27,8 @@ const StSenderDiv = styled.div`
   background-color: wheat;
   width: 100%;
   padding: 10px;
+  font-size: larger;
+
   margin: 0 0 20px 0;
   img {
     margin-right: 10px;
@@ -35,14 +37,32 @@ const StSenderDiv = styled.div`
   }
 `;
 
-const StBtnDiv = styled.div``;
+const StBtnDiv = styled.div`
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  margin-top: 50px;
+  button {
+    padding: 0.8rem;
+    width: 100px;
+    cursor: pointer;
+  }
+  button:first-of-type {
+    background-color: #b0e0e688;
+  }
+  button:last-of-type {
+    background-color: #cd32179c;
+  }
+`;
 const StReceiverP = styled.p`
   font-size: large;
   margin-bottom: 10px;
 `;
 
-const StEditInput = styled.input`
-  height: 300px;
+const StEditInput = styled.textarea`
+  /* height: ${(props) => (props.isEditing ? "300px" : "auto")}; */
+  min-height: 150px;
+  width: 100%;
   /* word-break: break-all; */
 `;
 
@@ -93,6 +113,7 @@ function Detail({ fanLetters, setFanLetters }) {
             value={editText}
             onChange={editChangeHndlr}
             ref={editRef}
+            isEditing={isEditing}
           />
         )}
         <StBtnDiv>

@@ -2,21 +2,16 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Layout from "components/Layout";
 import Home from "pages/Home";
 import Detail from "pages/Detail";
-import Header from "components/Header";
 
 const Router = ({
   fanLetters,
   setFanLetters,
-  chosenMemeber,
+  chosenMember,
   setChosenMember,
 }) => {
   return (
     <BrowserRouter>
-      <Layout>
-        <Header
-          setChosenMember={setChosenMember}
-          chosenMemeber={chosenMemeber}
-        />
+      <Layout setChosenMember={setChosenMember} chosenMember={chosenMember}>
         <Routes>
           <Route
             path="/"
@@ -24,7 +19,7 @@ const Router = ({
               <Home
                 fanLetters={fanLetters}
                 setFanLetters={setFanLetters}
-                chosenMemeber={chosenMemeber}
+                chosenMember={chosenMember}
               />
             }
           />

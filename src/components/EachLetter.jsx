@@ -25,7 +25,7 @@ const StLetterDiv = styled.div`
 `;
 
 const StP = styled.p`
-  display: block;
+  /* display: block; */
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
