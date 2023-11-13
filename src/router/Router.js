@@ -25,7 +25,12 @@ const Router = ({
               />
             }
           />
-          <Route path="detail" element={<Detail />} />
+          <Route
+            path="detail/:id"
+            element={
+              <Detail fanLetters={fanLetters} setFanLetters={setFanLetters} />
+            }
+          />
         </Routes>
       </Layout>
     </BrowserRouter>
