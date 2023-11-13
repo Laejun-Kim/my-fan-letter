@@ -7,6 +7,7 @@ const StLetterDiv = styled.div`
   border: 1px solid red;
   width: 90%;
   margin-top: 10px;
+  padding: 10px;
 
   div {
     width: 100%;
@@ -17,6 +18,7 @@ const StLetterDiv = styled.div`
     height: 70px;
     margin-right: 10px;
   }
+
   &:hover {
     scale: 1.05;
   }

@@ -9,14 +9,36 @@ const StDetailContainer = styled.section`
   justify-content: center;
   align-items: center;
   width: 100%;
+  margin-top: 10px;
 `;
 
 const StLetterDetail = styled.section`
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   border: 2px solid black;
+  padding: 10px;
   width: 90%;
+`;
+const StSenderDiv = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: wheat;
+  width: 100%;
+  padding: 10px;
+  margin: 0 0 20px 0;
+  img {
+    margin-right: 10px;
+    width: 100px;
+    height: 100px;
+  }
+`;
+
+const StBtnDiv = styled.div``;
+const StReceiverP = styled.p`
+  font-size: large;
+  margin-bottom: 10px;
 `;
 
 const StEditInput = styled.input`
@@ -59,10 +81,12 @@ function Detail({ fanLetters, setFanLetters }) {
   return (
     <StDetailContainer>
       <StLetterDetail>
-        <img src={matchingLetter.portrait} alt="" />
-        <p>By. {matchingLetter.username}</p>
+        <StSenderDiv>
+          <img src={matchingLetter.portrait} alt="" />
+          <p>By. {matchingLetter.username}</p>
+        </StSenderDiv>
 
-        <p>{matchingLetter.foward} 에게 쓴 편지</p>
+        <StReceiverP>{matchingLetter.foward} 님에게...</StReceiverP>
         {!isEditing && <p>{matchingLetter.text}</p>}
         {isEditing && (
           <StEditInput
@@ -71,22 +95,14 @@ function Detail({ fanLetters, setFanLetters }) {
             ref={editRef}
           />
         )}
-        <div>
+        <StBtnDiv>
           {!isEditing && <button onClick={editBtnHndlr}>수정</button>}
           {isEditing && (
             <button onClick={editCompleteBtnHndlr}>수정 완료</button>
           )}
           <button onClick={deleteBtnHndlr}>삭제</button>
-        </div>
+        </StBtnDiv>
       </StLetterDetail>
-
-      <button
-        onClick={() => {
-          navigate("/");
-        }}
-      >
-        Home으로 가는 임시 버튼
-      </button>
     </StDetailContainer>
   );
 }

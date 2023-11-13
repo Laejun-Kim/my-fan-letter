@@ -2,13 +2,16 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import uuid from "react-uuid";
 
+//styled-components
 const StForm = styled.form`
   border: 2px solid green;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  width: 90%;
+  padding: 10px;
+  gap: 10px;
 `;
 
 function SubmitLetter({ setFanLetters, fanLetters }) {
@@ -26,29 +29,37 @@ function SubmitLetter({ setFanLetters, fanLetters }) {
       username: userName,
       text: letterContent,
       foward: selmem,
-      portrait: null,
+      portrait:
+        "https://global.discourse-cdn.com/turtlehead/optimized/2X/c/c830d1dee245de3c851f0f88b6c57c83c69f3ace_2_250x250.png",
     };
     setFanLetters([...fanLetters, newLetter]);
   };
 
   return (
     <StForm onSubmit={submitHandler}>
-      <label htmlFor="username">닉네임 : </label>
-      <input
-        type="text"
-        id="username"
-        placeholder="너의 이름을 적어주세요"
-        value={userName}
-        onChange={(e) => setUserName(e.target.value)}
-      />
-      <label htmlFor="letterContent">메시지 : </label>
-      <input
-        type="text"
-        id="letterContent"
-        placeholder="응원 메시지를 적어주세요!"
-        value={letterContent}
-        onChange={(e) => setLetterContent(e.target.value)}
-      />
+      <div>
+        <label htmlFor="username">닉네임 : </label>
+        <input
+          type="text"
+          id="username"
+          placeholder="당신의 이름을 적어주세요"
+          value={userName}
+          onChange={(e) => setUserName(e.target.value)}
+          required
+        />
+      </div>
+      <div>
+        <label htmlFor="letterContent">메시지 : </label>
+        <input
+          type="text"
+          id="letterContent"
+          placeholder="응원 메시지를 적어주세요!"
+          value={letterContent}
+          onChange={(e) => setLetterContent(e.target.value)}
+          required
+        />
+      </div>
+
       <span>
         <label htmlFor="toWhom">누구에게 보내는 메시지인가요?</label>
         <select onChange={memberSelectHndlr} name="" id="toWhom">

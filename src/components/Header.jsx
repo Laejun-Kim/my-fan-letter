@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import headerbg from "assets/pic/kdaHeaderBg.jpg";
 import { useLocation, useNavigate } from "react-router-dom";
 
+//styled-components
 const StHeaderContainer = styled.section`
   width: 100%;
   height: 250px;
@@ -25,29 +26,36 @@ const StMemberSelect = styled.ul`
   margin-top: 50px;
   display: ${(props) =>
     props.$shouldDisplay ? "flex" : "none"}; //detail page에선 안보이게.
+`;
 
-  li {
-    font-size: 1.5rem;
+const StTab = styled.li`
+  font-size: 1.5rem;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.3);
+
+  width: 150px;
+  padding: 5px;
+  text-align: center;
+  user-select: none;
+  cursor: pointer;
+
+  &:hover {
+    scale: 1.1;
+    /* background-color: rgba(0, 0, 0, 0.3); */
     color: white;
-    background-color: rgba(0, 0, 0, 0.3);
-
-    width: 150px;
-    padding: 5px;
-    text-align: center;
-    user-select: none;
-    cursor: pointer;
-
-    &:hover {
-      scale: 1.1;
-      background-color: rgba(0, 0, 0, 0.3);
-      color: white;
-    }
   }
+  ${(props) =>
+    props.clicked &&
+    `
+      background-color: #971f977e;
+      color: #fff;
+    `}
 `;
 
 function Header({ setChosenMember }) {
   const navigate = useNavigate();
   const location = useLocation();
+  const [selectedTab, setSelectedTab] = useState(null);
   let isAtHome = location.pathname === "/" ? true : false;
   function handleClick(event) {
     // console.log(event.target.textContent);
@@ -70,11 +78,13 @@ function Header({ setChosenMember }) {
         break;
     }
     setChosenMember(member);
+    setSelectedTab(event.target.textContent);
   }
-  const tempArr = ["전체보기", "아칼리", "아리", "이블린", "카이사"];
+  // const tempArr = ["전체보기", "아칼리", "아리", "이블린", "카이사"];
 
   const titleClickHndlr = () => {
     navigate("/");
+    setSelectedTab(null);
   };
   return (
     <StHeaderContainer>
@@ -82,13 +92,28 @@ function Header({ setChosenMember }) {
         K/DA 팬레터 사이트
       </StHeaderTitle>
       <StMemberSelect $shouldDisplay={isAtHome}>
-        {tempArr.map((item) => {
+        <StTab onClick={handleClick} clicked={selectedTab === "전체보기"}>
+          전체보기
+        </StTab>
+        <StTab onClick={handleClick} clicked={selectedTab === "아칼리"}>
+          아칼리
+        </StTab>
+        <StTab onClick={handleClick} clicked={selectedTab === "아리"}>
+          아리
+        </StTab>
+        <StTab onClick={handleClick} clicked={selectedTab === "이블린"}>
+          이블린
+        </StTab>
+        <StTab onClick={handleClick} clicked={selectedTab === "카이사"}>
+          카이사
+        </StTab>
+        {/* {tempArr.map((item) => {
           return (
             <li key={item} onClick={handleClick}>
               {item}
             </li>
           );
-        })}
+        })} */}
       </StMemberSelect>
     </StHeaderContainer>
   );

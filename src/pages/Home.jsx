@@ -13,19 +13,11 @@ const StHomeContainer = styled.section`
 `;
 
 function Home({ fanLetters, setFanLetters, chosenMemeber }) {
-  const navigate = useNavigate();
   return (
     <StHomeContainer>
       <p>개발용 임시 선택된 멤버: {chosenMemeber}</p>
       <SubmitLetter fanLetters={fanLetters} setFanLetters={setFanLetters} />
       <Letters fanLetters={fanLetters} chosenMemeber={chosenMemeber} />
-      <button
-        onClick={() => {
-          navigate("/detail");
-        }}
-      >
-        디테일로 가는 임시 버튼
-      </button>
     </StHomeContainer>
   );
 }
