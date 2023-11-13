@@ -19,9 +19,11 @@ const StHeaderTitle = styled.h1`
   text-shadow: 3px 0px black; //글자 잘 안보여서 넣은건데 더 좋은 방법있으면 ㄱㄱ
 `;
 const StMemberSelect = styled.ul`
-  display: flex;
+  /* display: flex; */
   gap: 20px;
   margin-top: 50px;
+  display: ${(props) =>
+    props.shoulddisplay ? "flex" : "none"}; //detail에선 안보이게.
 
   li {
     font-size: 1.5rem;
@@ -45,6 +47,8 @@ const StMemberSelect = styled.ul`
 function Header({ setChosenMember }) {
   const location = useLocation();
   console.log(location.pathname);
+  let isathome = location.pathname === "/" ? true : false;
+  console.log(isathome);
   function handleClick(event) {
     // console.log(event.target.textContent);
     let member;
@@ -71,7 +75,7 @@ function Header({ setChosenMember }) {
   return (
     <StHeaderContainer>
       <StHeaderTitle>K/DA 팬레터 사이트</StHeaderTitle>
-      <StMemberSelect>
+      <StMemberSelect shoulddisplay={isathome}>
         {tempArr.map((item) => {
           return (
             <li key={item} onClick={handleClick}>
