@@ -10,6 +10,7 @@ import { useState } from "react";
 // import chad from "assets/portrait/chad.png";
 // import uuid from "react-uuid";
 import dummyData from "fakeData.json";
+import FanLettersContext from "store/fan-letters";
 
 // const dummyData = [
 //   {
@@ -55,7 +56,14 @@ function App() {
 
   console.log(fanLetters);
   return (
-    <>
+    <FanLettersContext.Provider
+      value={{
+        fanLetters: fanLetters,
+        setFanLetters: setFanLetters,
+        chosenMember: chosenMember,
+        setChosenMember: setChosenMember,
+      }}
+    >
       <GlobalStyle />
       <Router
         fanLetters={fanLetters}
@@ -63,7 +71,7 @@ function App() {
         chosenMember={chosenMember}
         setChosenMember={setChosenMember}
       />
-    </>
+    </FanLettersContext.Provider>
   );
 }
 
