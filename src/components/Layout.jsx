@@ -2,10 +2,10 @@ import React from "react";
 import Header from "./Header";
 import Footer from "./Footer";
 
-function Layout({ children, setChosenMember, chosenMember }) {
+function Layout({ children }) {
   return (
     <>
-      <Header chosenMember={chosenMember} setChosenMember={setChosenMember} />
+      <Header />
 
       {children}
       <Footer />

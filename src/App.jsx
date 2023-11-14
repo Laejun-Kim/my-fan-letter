@@ -54,24 +54,21 @@ function App() {
   const [fanLetters, setFanLetters] = useState(dummyData);
   const [chosenMember, setChosenMember] = useState("ALL");
 
-  console.log(fanLetters);
+  // console.log(fanLetters);
   return (
-    <FanLettersContext.Provider
-      value={{
-        fanLetters: fanLetters,
-        setFanLetters: setFanLetters,
-        chosenMember: chosenMember,
-        setChosenMember: setChosenMember,
-      }}
-    >
+    <>
       <GlobalStyle />
-      <Router
-        fanLetters={fanLetters}
-        setFanLetters={setFanLetters}
-        chosenMember={chosenMember}
-        setChosenMember={setChosenMember}
-      />
-    </FanLettersContext.Provider>
+      <FanLettersContext.Provider
+        value={{
+          fanLetters: fanLetters,
+          setFanLetters: setFanLetters,
+          chosenMember: chosenMember,
+          setChosenMember: setChosenMember,
+        }}
+      >
+        <Router />
+      </FanLettersContext.Provider>
+    </>
   );
 }
 

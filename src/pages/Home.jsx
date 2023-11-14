@@ -12,12 +12,11 @@ const StHomeContainer = styled.section`
   padding: 10px;
 `;
 
-function Home({ fanLetters, setFanLetters, chosenMember }) {
+function Home() {
   return (
     <StHomeContainer>
-      <p>개발용 // 임시 선택된 멤버: {chosenMember}</p>
-      <SubmitLetter fanLetters={fanLetters} setFanLetters={setFanLetters} />
-      <Letters fanLetters={fanLetters} chosenMember={chosenMember} />
+      <SubmitLetter />
+      <Letters />
     </StHomeContainer>
   );
 }

@@ -1,6 +1,7 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
+import FanLettersContext from "store/fan-letters";
 
 //styled components
 const StDetailContainer = styled.section`
@@ -66,9 +67,12 @@ const StEditInput = styled.textarea`
   /* word-break: break-all; */
 `;
 
-function Detail({ fanLetters, setFanLetters }) {
+function Detail() {
+  const ctx = useContext(FanLettersContext);
   const params = useParams();
-  const matchingLetter = fanLetters.find((letter) => letter.id == params.id);
+  const matchingLetter = ctx.fanLetters.find(
+    (letter) => letter.id == params.id
+  );
   const editRef = useRef("");
 
   const [isEditing, setIsEditing] = useState(false);
@@ -76,8 +80,10 @@ function Detail({ fanLetters, setFanLetters }) {
   const navigate = useNavigate();
 
   const deleteBtnHndlr = () => {
-    let temp = fanLetters.filter((letter) => letter.id !== matchingLetter.id);
-    setFanLetters(temp);
+    let temp = ctx.fanLetters.filter(
+      (letter) => letter.id !== matchingLetter.id
+    );
+    ctx.setFanLetters(temp);
     navigate("/");
   };
 
@@ -88,12 +94,14 @@ function Detail({ fanLetters, setFanLetters }) {
     setEditText(e.target.value);
   };
   const editCompleteBtnHndlr = () => {
-    let temp = fanLetters.filter((letter) => letter.id !== matchingLetter.id);
-    let editTarget = fanLetters.filter(
+    let temp = ctx.fanLetters.filter(
+      (letter) => letter.id !== matchingLetter.id
+    );
+    let editTarget = ctx.fanLetters.filter(
       (letter) => letter.id == matchingLetter.id
     );
     editTarget[0].text = editRef.current.value;
-    setFanLetters([...temp, editTarget[0]]);
+    ctx.setFanLetters([...temp, editTarget[0]]);
     setIsEditing((prev) => !prev);
     navigate("/");
   };

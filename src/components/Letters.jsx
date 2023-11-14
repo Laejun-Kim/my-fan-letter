@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import EachLetter from "./EachLetter";
+import FanLettersContext from "store/fan-letters";
 
 const StLetters = styled.div`
   display: flex;
@@ -14,29 +15,37 @@ const StLetters = styled.div`
   }
 `;
 
-function Letters({ fanLetters, chosenMember }) {
+function Letters() {
+  const ctx = useContext(FanLettersContext);
+
   let filteredLetter;
-  switch (chosenMember) {
+  switch (ctx.chosenMember) {
     case "ALL":
-      filteredLetter = fanLetters;
+      filteredLetter = ctx.fanLetters;
       break;
     case "AKALI":
-      filteredLetter = fanLetters.filter((letter) => letter.foward === "AKALI");
+      filteredLetter = ctx.fanLetters.filter(
+        (letter) => letter.foward === "AKALI"
+      );
       break;
     case "AHRI":
-      filteredLetter = fanLetters.filter((letter) => letter.foward === "AHRI");
+      filteredLetter = ctx.fanLetters.filter(
+        (letter) => letter.foward === "AHRI"
+      );
       break;
     case "EVELYN":
-      filteredLetter = fanLetters.filter(
+      filteredLetter = ctx.fanLetters.filter(
         (letter) => letter.foward === "EVELYN"
       );
       break;
     case "KAISA":
-      filteredLetter = fanLetters.filter((letter) => letter.foward === "KAISA");
+      filteredLetter = ctx.fanLetters.filter(
+        (letter) => letter.foward === "KAISA"
+      );
       break;
   }
 
-  console.log(chosenMember);
+  // console.log(ctx.chosenMember);
   return (
     <StLetters>
       {filteredLetter.length === 0 && (
