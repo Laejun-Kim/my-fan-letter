@@ -7,6 +7,7 @@ const StFooterContainer = styled.section`
   height: 100px;
   padding: 80px;
   background-color: #892be224;
+  margin-top: 20px;
 `;
 
 function Footer() {

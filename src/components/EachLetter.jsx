@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 
+//styled-components
 const StLetterDiv = styled.div`
   display: flex;
   border: 1px solid #d1e0fa;
@@ -25,7 +26,6 @@ const StLetterDiv = styled.div`
 `;
 
 const StP = styled.p`
-  /* display: block; */
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
