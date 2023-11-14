@@ -1,6 +1,7 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
+import FanLettersContext from "store/fan-letters";
 
 //styled components
 const StDetailContainer = styled.section`
@@ -60,15 +61,16 @@ const StReceiverP = styled.p`
 `;
 
 const StEditInput = styled.textarea`
-  /* height: ${(props) => (props.isEditing ? "300px" : "auto")}; */
   min-height: 150px;
   width: 100%;
-  /* word-break: break-all; */
 `;
 
-function Detail({ fanLetters, setFanLetters }) {
+function Detail() {
+  const ctx = useContext(FanLettersContext);
   const params = useParams();
-  const matchingLetter = fanLetters.find((letter) => letter.id == params.id);
+  const matchingLetter = ctx.fanLetters.find(
+    (letter) => letter.id == params.id
+  );
   const editRef = useRef("");
 
   const [isEditing, setIsEditing] = useState(false);
@@ -76,9 +78,13 @@ function Detail({ fanLetters, setFanLetters }) {
   const navigate = useNavigate();
 
   const deleteBtnHndlr = () => {
-    let temp = fanLetters.filter((letter) => letter.id !== matchingLetter.id);
-    setFanLetters(temp);
-    navigate("/");
+    if (window.confirm("삭제하시겠습니까?")) {
+      let temp = ctx.fanLetters.filter(
+        (letter) => letter.id !== matchingLetter.id
+      );
+      ctx.setFanLetters(temp);
+      navigate("/");
+    }
   };
 
   const editBtnHndlr = () => {
@@ -88,14 +94,21 @@ function Detail({ fanLetters, setFanLetters }) {
     setEditText(e.target.value);
   };
   const editCompleteBtnHndlr = () => {
-    let temp = fanLetters.filter((letter) => letter.id !== matchingLetter.id);
-    let editTarget = fanLetters.filter(
+    let editTarget = ctx.fanLetters.filter(
       (letter) => letter.id == matchingLetter.id
     );
-    editTarget[0].text = editRef.current.value;
-    setFanLetters([...temp, editTarget[0]]);
-    setIsEditing((prev) => !prev);
-    navigate("/");
+    if (editTarget[0].text.length === editRef.current.value.length) {
+      window.alert("수정 사항이 없는것 같네요");
+      setIsEditing((prev) => !prev);
+    } else {
+      let temp = ctx.fanLetters.filter(
+        (letter) => letter.id !== matchingLetter.id
+      );
+      editTarget[0].text = editRef.current.value;
+      ctx.setFanLetters([...temp, editTarget[0]]);
+      setIsEditing((prev) => !prev);
+      navigate("/");
+    }
   };
 
   return (
@@ -113,7 +126,6 @@ function Detail({ fanLetters, setFanLetters }) {
             value={editText}
             onChange={editChangeHndlr}
             ref={editRef}
-            // isEditing={isEditing}
           />
         )}
         <StBtnDiv>

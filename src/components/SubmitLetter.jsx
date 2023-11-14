@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import styled from "styled-components";
 import uuid from "react-uuid";
+import FanLettersContext from "store/fan-letters";
 
 //styled-components
 const StForm = styled.form`
@@ -14,7 +15,9 @@ const StForm = styled.form`
   gap: 10px;
 `;
 
-function SubmitLetter({ setFanLetters, fanLetters }) {
+function SubmitLetter() {
+  const ctx = useContext(FanLettersContext);
+
   const [userName, setUserName] = useState("");
   const [letterContent, setLetterContent] = useState("");
   const [selmem, setSelmem] = useState("AKALI");
@@ -32,7 +35,7 @@ function SubmitLetter({ setFanLetters, fanLetters }) {
       portrait:
         "https://global.discourse-cdn.com/turtlehead/optimized/2X/c/c830d1dee245de3c851f0f88b6c57c83c69f3ace_2_250x250.png",
     };
-    setFanLetters([...fanLetters, newLetter]);
+    ctx.setFanLetters([...ctx.fanLetters, newLetter]);
   };
 
   return (
