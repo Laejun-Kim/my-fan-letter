@@ -9,6 +9,7 @@ const StLetters = styled.div`
   align-items: center;
 
   width: 80%;
+  margin-bottom: 50px;
 
   > p {
     margin: 20px;
