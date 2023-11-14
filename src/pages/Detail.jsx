@@ -61,10 +61,8 @@ const StReceiverP = styled.p`
 `;
 
 const StEditInput = styled.textarea`
-  /* height: ${(props) => (props.isEditing ? "300px" : "auto")}; */
   min-height: 150px;
   width: 100%;
-  /* word-break: break-all; */
 `;
 
 function Detail() {
@@ -80,11 +78,13 @@ function Detail() {
   const navigate = useNavigate();
 
   const deleteBtnHndlr = () => {
-    let temp = ctx.fanLetters.filter(
-      (letter) => letter.id !== matchingLetter.id
-    );
-    ctx.setFanLetters(temp);
-    navigate("/");
+    if (window.confirm("삭제하시겠습니까?")) {
+      let temp = ctx.fanLetters.filter(
+        (letter) => letter.id !== matchingLetter.id
+      );
+      ctx.setFanLetters(temp);
+      navigate("/");
+    }
   };
 
   const editBtnHndlr = () => {
@@ -94,16 +94,21 @@ function Detail() {
     setEditText(e.target.value);
   };
   const editCompleteBtnHndlr = () => {
-    let temp = ctx.fanLetters.filter(
-      (letter) => letter.id !== matchingLetter.id
-    );
     let editTarget = ctx.fanLetters.filter(
       (letter) => letter.id == matchingLetter.id
     );
-    editTarget[0].text = editRef.current.value;
-    ctx.setFanLetters([...temp, editTarget[0]]);
-    setIsEditing((prev) => !prev);
-    navigate("/");
+    if (editTarget[0].text.length === editRef.current.value.length) {
+      window.alert("수정 사항이 없는것 같네요");
+      setIsEditing((prev) => !prev);
+    } else {
+      let temp = ctx.fanLetters.filter(
+        (letter) => letter.id !== matchingLetter.id
+      );
+      editTarget[0].text = editRef.current.value;
+      ctx.setFanLetters([...temp, editTarget[0]]);
+      setIsEditing((prev) => !prev);
+      navigate("/");
+    }
   };
 
   return (
@@ -121,7 +126,6 @@ function Detail() {
             value={editText}
             onChange={editChangeHndlr}
             ref={editRef}
-            // isEditing={isEditing}
           />
         )}
         <StBtnDiv>
