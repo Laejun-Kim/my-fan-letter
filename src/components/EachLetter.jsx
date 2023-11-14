@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 const StLetterDiv = styled.div`
   display: flex;
-  border: 1px solid red;
+  border: 1px solid #d1e0fa;
   width: 90%;
   margin-top: 10px;
   padding: 10px;

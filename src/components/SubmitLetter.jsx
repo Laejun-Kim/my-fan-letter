@@ -4,7 +4,7 @@ import uuid from "react-uuid";
 
 //styled-components
 const StForm = styled.form`
-  border: 2px solid green;
+  border: 2px solid #734bad;
   display: flex;
   flex-direction: column;
   justify-content: center;
