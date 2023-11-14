@@ -4,26 +4,21 @@ import "reset.css";
 import GlobalStyle from "GlobalStyle";
 import { useState } from "react";
 import dummyData from "fakeData.json";
-import FanLettersContext from "store/fan-letters";
+import { useSelector } from "react-redux";
 
 function App() {
   const [fanLetters, setFanLetters] = useState(dummyData);
   const [chosenMember, setChosenMember] = useState("ALL");
+  const data = useSelector((state) => {
+    return state;
+  });
 
-  // console.log(fanLetters);
+  console.log("data", data);
+
   return (
     <>
       <GlobalStyle />
-      <FanLettersContext.Provider
-        value={{
-          fanLetters: fanLetters,
-          setFanLetters: setFanLetters,
-          chosenMember: chosenMember,
-          setChosenMember: setChosenMember,
-        }}
-      >
-        <Router />
-      </FanLettersContext.Provider>
+      <Router />
     </>
   );
 }
