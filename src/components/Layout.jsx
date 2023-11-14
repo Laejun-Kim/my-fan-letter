@@ -1,5 +1,6 @@
 import React from "react";
 import Header from "./Header";
+import Footer from "./Footer";
 
 function Layout({ children, setChosenMember, chosenMember }) {
   return (
@@ -7,6 +8,7 @@ function Layout({ children, setChosenMember, chosenMember }) {
       <Header chosenMember={chosenMember} setChosenMember={setChosenMember} />
 
       {children}
+      <Footer />
     </>
   );
 }

@@ -113,7 +113,7 @@ function Detail({ fanLetters, setFanLetters }) {
             value={editText}
             onChange={editChangeHndlr}
             ref={editRef}
-            isEditing={isEditing}
+            // isEditing={isEditing}
           />
         )}
         <StBtnDiv>

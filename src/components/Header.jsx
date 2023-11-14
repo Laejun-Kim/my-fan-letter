@@ -12,7 +12,7 @@ const StHeaderContainer = styled.section`
   width: 100%;
   height: 250px;
   background-image: ${(props) => {
-    switch (props.chosenMember) {
+    switch (props.$chosenMember) {
       case "AHRI":
         return `url(${headerAhribg})`;
       case "AKALI":
@@ -63,7 +63,7 @@ const StTab = styled.li`
     color: white;
   }
   ${(props) =>
-    props.clicked &&
+    props.$clicked &&
     `
       background-color: #971f977e;
       color: #fff;
@@ -106,24 +106,24 @@ function Header({ setChosenMember, chosenMember }) {
     // setSelectedTab(null);
   };
   return (
-    <StHeaderContainer chosenMember={chosenMember}>
+    <StHeaderContainer $chosenMember={chosenMember}>
       <StHeaderTitle onClick={titleClickHndlr}>
         K/DA 팬레터 사이트
       </StHeaderTitle>
       <StMemberSelect $shouldDisplay={isAtHome}>
-        <StTab onClick={handleClick} clicked={selectedTab === "전체보기"}>
+        <StTab onClick={handleClick} $clicked={selectedTab === "전체보기"}>
           전체보기
         </StTab>
-        <StTab onClick={handleClick} clicked={selectedTab === "아칼리"}>
+        <StTab onClick={handleClick} $clicked={selectedTab === "아칼리"}>
           아칼리
         </StTab>
-        <StTab onClick={handleClick} clicked={selectedTab === "아리"}>
+        <StTab onClick={handleClick} $clicked={selectedTab === "아리"}>
           아리
         </StTab>
-        <StTab onClick={handleClick} clicked={selectedTab === "이블린"}>
+        <StTab onClick={handleClick} $clicked={selectedTab === "이블린"}>
           이블린
         </StTab>
-        <StTab onClick={handleClick} clicked={selectedTab === "카이사"}>
+        <StTab onClick={handleClick} $clicked={selectedTab === "카이사"}>
           카이사
         </StTab>
         {/* {tempArr.map((item) => {
