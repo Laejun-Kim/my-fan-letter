@@ -1,4 +1,4 @@
-import React, { useState, useRef, useContext } from "react";
+import React, { useState, useRef } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
@@ -81,15 +81,15 @@ function Detail() {
   const fanLetters = useSelector((state) => state.fanLetter);
   const dispatch = useDispatch();
 
-  // const ctx = useContext(FanLettersContext);
   const params = useParams();
+  const navigate = useNavigate();
   const matchingLetter = fanLetters.find((letter) => letter.id == params.id);
   const editRef = useRef("");
 
+  // local states
   const [isEditing, setIsEditing] = useState(false);
   const [editText, setEditText] = useState(matchingLetter.text);
   const [modalActivation, setModalActivation] = useState();
-  const navigate = useNavigate();
 
   const deleteBtnHndlr = () => {
     setModalActivation({
@@ -144,12 +144,12 @@ function Detail() {
     }
   };
 
+  //모달에 전달할 함수들
   const onClose = () => {
     setModalActivation();
   };
   const onDelete = () => {
     let temp = fanLetters.filter((letter) => letter.id !== matchingLetter.id);
-    // ctx.setFanLetters(temp);
     dispatch(setFanLetters(temp));
     navigate("/");
   };
@@ -159,11 +159,9 @@ function Detail() {
     );
     let temp = fanLetters.filter((letter) => letter.id !== matchingLetter.id);
     editTarget[0].text = editRef.current.value;
-    // ctx.setFanLetters([...temp, editTarget[0]]);
     dispatch(setFanLetters([...temp, editTarget[0]]));
     setModalActivation();
     setIsEditing((prev) => !prev);
-    // navigate("/");
   };
 
   return (
