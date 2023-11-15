@@ -7,13 +7,13 @@ import dummyData from "fakeData.json";
 import { useSelector } from "react-redux";
 
 function App() {
-  const [fanLetters, setFanLetters] = useState(dummyData);
-  const [chosenMember, setChosenMember] = useState("ALL");
-  const data = useSelector((state) => {
-    return state;
-  });
+  // const [fanLetters, setFanLetters] = useState(dummyData);
+  // const [chosenMember, setChosenMember] = useState("ALL");
+  // const data = useSelector((state) => {
+  //   return state;
+  // });
 
-  console.log("data", data);
+  // console.log("data", data);
 
   return (
     <>

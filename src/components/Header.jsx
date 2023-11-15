@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import headerAllbg from "assets/pic/kdaHeaderBg.jpg";
 import headerAhribg from "assets/pic/cropped-ahri.jpg";
@@ -6,7 +6,7 @@ import headerAkalibg from "assets/pic/cropped-akali.jpg";
 import headerEvelynbg from "assets/pic/cropped-evelyn.jpg";
 import headerKaisabg from "assets/pic/cropped-kaisa.jpg";
 import { useLocation, useNavigate } from "react-router-dom";
-import FanLettersContext from "store/fan-letters";
+import { useDispatch, useSelector } from "react-redux";
 
 //styled-components
 const StHeaderContainer = styled.section`
@@ -72,7 +72,9 @@ const StTab = styled.li`
 `;
 
 function Header() {
-  const ctx = useContext(FanLettersContext);
+  const chosenMember = useSelector((state) => state.chosenMember.chosenMember);
+  console.log(chosenMember);
+  const dispatch = useDispatch();
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -98,7 +100,8 @@ function Header() {
         member = "KAISA";
         break;
     }
-    ctx.setChosenMember(member);
+    // ctx.setChosenMember(member);
+    dispatch({ type: member });
     setSelectedTab(event.target.textContent);
   }
   // const tempArr = ["전체보기", "아칼리", "아리", "이블린", "카이사"];
@@ -108,7 +111,7 @@ function Header() {
     // setSelectedTab(null);
   };
   return (
-    <StHeaderContainer $chosenMember={ctx.chosenMember}>
+    <StHeaderContainer $chosenMember={chosenMember}>
       <StHeaderTitle onClick={titleClickHndlr}>
         K/DA 팬레터 사이트
       </StHeaderTitle>

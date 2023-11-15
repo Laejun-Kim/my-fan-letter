@@ -1,9 +1,9 @@
 import { createStore, combineReducers } from "redux";
-import fanletter from "redux/modules/fanletter";
+import fanLetter from "redux/modules/fanletter";
 import chosenMember from "redux/modules/chosen-member";
 
 const rootReducer = combineReducers({
-  fanletter,
+  fanLetter,
   chosenMember,
 });
 const store = createStore(rootReducer);

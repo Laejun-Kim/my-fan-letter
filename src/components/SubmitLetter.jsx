@@ -2,6 +2,8 @@ import React, { useState, useContext } from "react";
 import styled from "styled-components";
 import uuid from "react-uuid";
 import FanLettersContext from "store/fan-letters";
+import { useDispatch, useSelector } from "react-redux";
+import { setFanLetters } from "redux/modules/fanletter";
 
 //styled-components
 const StForm = styled.form`
@@ -16,7 +18,10 @@ const StForm = styled.form`
 `;
 
 function SubmitLetter() {
-  const ctx = useContext(FanLettersContext);
+  const fanLetters = useSelector((state) => state.fanLetter);
+  const dispatch = useDispatch();
+
+  // const ctx = useContext(FanLettersContext);
 
   const [userName, setUserName] = useState("");
   const [letterContent, setLetterContent] = useState("");
@@ -35,7 +40,8 @@ function SubmitLetter() {
       portrait:
         "https://global.discourse-cdn.com/turtlehead/optimized/2X/c/c830d1dee245de3c851f0f88b6c57c83c69f3ace_2_250x250.png",
     };
-    ctx.setFanLetters([...ctx.fanLetters, newLetter]);
+    // ctx.setFanLetters([...fanLetters, newLetter]);
+    dispatch(setFanLetters([...fanLetters, newLetter]));
   };
 
   return (

@@ -2,6 +2,8 @@ import React, { useState, useRef, useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import FanLettersContext from "store/fan-letters";
+import { useDispatch, useSelector } from "react-redux";
+import { setFanLetters } from "redux/modules/fanletter";
 
 //styled components
 const StDetailContainer = styled.section`
@@ -66,11 +68,12 @@ const StEditInput = styled.textarea`
 `;
 
 function Detail() {
-  const ctx = useContext(FanLettersContext);
+  const fanLetters = useSelector((state) => state.fanLetter);
+  const dispatch = useDispatch();
+
+  // const ctx = useContext(FanLettersContext);
   const params = useParams();
-  const matchingLetter = ctx.fanLetters.find(
-    (letter) => letter.id == params.id
-  );
+  const matchingLetter = fanLetters.find((letter) => letter.id == params.id);
   const editRef = useRef("");
 
   const [isEditing, setIsEditing] = useState(false);
@@ -79,10 +82,9 @@ function Detail() {
 
   const deleteBtnHndlr = () => {
     if (window.confirm("삭제하시겠습니까?")) {
-      let temp = ctx.fanLetters.filter(
-        (letter) => letter.id !== matchingLetter.id
-      );
-      ctx.setFanLetters(temp);
+      let temp = fanLetters.filter((letter) => letter.id !== matchingLetter.id);
+      // ctx.setFanLetters(temp);
+      dispatch(setFanLetters(temp));
       navigate("/");
     }
   };
@@ -94,18 +96,18 @@ function Detail() {
     setEditText(e.target.value);
   };
   const editCompleteBtnHndlr = () => {
-    let editTarget = ctx.fanLetters.filter(
+    let editTarget = fanLetters.filter(
       (letter) => letter.id == matchingLetter.id
     );
     if (editTarget[0].text.length === editRef.current.value.length) {
       window.alert("수정 사항이 없는것 같네요");
       setIsEditing((prev) => !prev);
     } else {
-      let temp = ctx.fanLetters.filter(
-        (letter) => letter.id !== matchingLetter.id
-      );
+      let temp = fanLetters.filter((letter) => letter.id !== matchingLetter.id);
       editTarget[0].text = editRef.current.value;
-      ctx.setFanLetters([...temp, editTarget[0]]);
+      // ctx.setFanLetters([...temp, editTarget[0]]);
+      dispatch(setFanLetters([...temp, editTarget[0]]));
+
       setIsEditing((prev) => !prev);
       navigate("/");
     }

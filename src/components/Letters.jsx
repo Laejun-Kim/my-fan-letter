@@ -1,7 +1,7 @@
-import React, { useContext } from "react";
+import React from "react";
 import styled from "styled-components";
 import EachLetter from "./EachLetter";
-import FanLettersContext from "store/fan-letters";
+import { useSelector } from "react-redux";
 
 const StLetters = styled.div`
   display: flex;
@@ -17,36 +17,34 @@ const StLetters = styled.div`
 `;
 
 function Letters() {
-  const ctx = useContext(FanLettersContext);
+  const chosenMember = useSelector((state) => state.chosenMember.chosenMember);
+  const fanLetters = useSelector((state) => state.fanLetter);
+  console.log(fanLetters);
+
+  // const ctx = useContext(FanLettersContext);
 
   let filteredLetter;
-  switch (ctx.chosenMember) {
+  switch (chosenMember) {
     case "ALL":
-      filteredLetter = ctx.fanLetters;
+      filteredLetter = fanLetters;
       break;
     case "AKALI":
-      filteredLetter = ctx.fanLetters.filter(
-        (letter) => letter.foward === "AKALI"
-      );
+      filteredLetter = fanLetters.filter((letter) => letter.foward === "AKALI");
       break;
     case "AHRI":
-      filteredLetter = ctx.fanLetters.filter(
-        (letter) => letter.foward === "AHRI"
-      );
+      filteredLetter = fanLetters.filter((letter) => letter.foward === "AHRI");
       break;
     case "EVELYN":
-      filteredLetter = ctx.fanLetters.filter(
+      filteredLetter = fanLetters.filter(
         (letter) => letter.foward === "EVELYN"
       );
       break;
     case "KAISA":
-      filteredLetter = ctx.fanLetters.filter(
-        (letter) => letter.foward === "KAISA"
-      );
+      filteredLetter = fanLetters.filter((letter) => letter.foward === "KAISA");
       break;
   }
+  console.log(filteredLetter);
 
-  // console.log(ctx.chosenMember);
   return (
     <StLetters>
       {filteredLetter.length === 0 && (
