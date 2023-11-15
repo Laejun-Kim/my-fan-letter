@@ -1,7 +1,6 @@
 import React, { useState, useRef, useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
-import FanLettersContext from "store/fan-letters";
 import { useDispatch, useSelector } from "react-redux";
 import { setFanLetters } from "redux/modules/fanletter";
 

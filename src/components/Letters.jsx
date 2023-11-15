@@ -17,12 +17,11 @@ const StLetters = styled.div`
 `;
 
 function Letters() {
+  //redux
   const chosenMember = useSelector((state) => state.chosenMember.chosenMember);
   const fanLetters = useSelector((state) => state.fanLetter);
-  console.log(fanLetters);
 
-  // const ctx = useContext(FanLettersContext);
-
+  //선택된 멤버에 따라 팬레터를 필터링 하는 로직
   let filteredLetter;
   switch (chosenMember) {
     case "ALL":

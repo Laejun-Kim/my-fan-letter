@@ -35,12 +35,10 @@ const StHeaderContainer = styled.section`
 const StHeaderTitle = styled.h1`
   color: white;
   font-size: 3rem;
-  /* margin-right: 400px; */
-  text-shadow: 3px 0px black; //글자 잘 안보여서 넣은건데 더 좋은 방법있으면 ㄱㄱ
+  text-shadow: 4px 0px 2px black; //글자 잘 안보여서 넣은건데 더 좋은 방법있으면 ㄱㄱ
   cursor: pointer;
 `;
 const StMemberSelect = styled.ul`
-  /* display: flex; */
   gap: 20px;
   margin-top: 50px;
   display: ${(props) =>
@@ -72,13 +70,14 @@ const StTab = styled.li`
 `;
 
 function Header() {
+  //redux
   const chosenMember = useSelector((state) => state.chosenMember.chosenMember);
   console.log(chosenMember);
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
   const location = useLocation();
-  const [selectedTab, setSelectedTab] = useState(null);
+  const [selectedTab, setSelectedTab] = useState("전체보기");
   let isAtHome = location.pathname === "/" ? true : false;
   function handleClick(event) {
     // console.log(event.target.textContent);
@@ -104,11 +103,12 @@ function Header() {
     dispatch({ type: member });
     setSelectedTab(event.target.textContent);
   }
-  // const tempArr = ["전체보기", "아칼리", "아리", "이블린", "카이사"];
+  const tempArr = ["전체보기", "아칼리", "아리", "이블린", "카이사"];
 
   const titleClickHndlr = () => {
     navigate("/");
-    // setSelectedTab(null);
+    setSelectedTab("전체보기");
+    dispatch({ type: "ALL" });
   };
   return (
     <StHeaderContainer $chosenMember={chosenMember}>
@@ -116,7 +116,7 @@ function Header() {
         K/DA 팬레터 사이트
       </StHeaderTitle>
       <StMemberSelect $shouldDisplay={isAtHome}>
-        <StTab onClick={handleClick} $clicked={selectedTab === "전체보기"}>
+        {/* <StTab onClick={handleClick} $clicked={selectedTab === "전체보기"}>
           전체보기
         </StTab>
         <StTab onClick={handleClick} $clicked={selectedTab === "아칼리"}>
@@ -130,7 +130,7 @@ function Header() {
         </StTab>
         <StTab onClick={handleClick} $clicked={selectedTab === "카이사"}>
           카이사
-        </StTab>
+        </StTab> */}
         {/* {tempArr.map((item) => {
           return (
             <li key={item} onClick={handleClick}>
@@ -138,6 +138,17 @@ function Header() {
             </li>
           );
         })} */}
+        {tempArr.map((item) => {
+          return (
+            <StTab
+              key={item}
+              onClick={handleClick}
+              $clicked={selectedTab === `${item}`}
+            >
+              {item}
+            </StTab>
+          );
+        })}
       </StMemberSelect>
     </StHeaderContainer>
   );

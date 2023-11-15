@@ -2,9 +2,6 @@
 import Router from "router/Router";
 import "reset.css";
 import GlobalStyle from "GlobalStyle";
-import { useState } from "react";
-import dummyData from "fakeData.json";
-import { useSelector } from "react-redux";
 
 function App() {
   // const [fanLetters, setFanLetters] = useState(dummyData);

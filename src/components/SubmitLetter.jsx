@@ -1,7 +1,6 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import uuid from "react-uuid";
-import FanLettersContext from "store/fan-letters";
 import { useDispatch, useSelector } from "react-redux";
 import { setFanLetters } from "redux/modules/fanletter";
 
@@ -18,10 +17,9 @@ const StForm = styled.form`
 `;
 
 function SubmitLetter() {
+  //redux
   const fanLetters = useSelector((state) => state.fanLetter);
   const dispatch = useDispatch();
-
-  // const ctx = useContext(FanLettersContext);
 
   const [userName, setUserName] = useState("");
   const [letterContent, setLetterContent] = useState("");
