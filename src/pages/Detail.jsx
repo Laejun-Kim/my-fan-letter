@@ -26,7 +26,7 @@ const StSenderDiv = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  background-color: wheat;
+  background-color: #7949b434;
   width: 100%;
   padding: 10px;
   font-size: larger;
@@ -36,6 +36,13 @@ const StSenderDiv = styled.div`
     margin-right: 10px;
     width: 100px;
     height: 100px;
+  }
+  span {
+    font-size: small;
+  }
+  p {
+    font-size: larger;
+    margin-bottom: 10px;
   }
 `;
 
@@ -117,7 +124,10 @@ function Detail() {
       <StLetterDetail>
         <StSenderDiv>
           <img src={matchingLetter.portrait} alt="" />
-          <p>By. {matchingLetter.username}</p>
+          <div>
+            <p>{matchingLetter.username}</p>
+            <span>{matchingLetter.postedTime}</span>
+          </div>
         </StSenderDiv>
 
         <StReceiverP>{matchingLetter.foward} 님에게...</StReceiverP>

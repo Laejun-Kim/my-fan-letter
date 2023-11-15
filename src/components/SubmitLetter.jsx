@@ -27,14 +27,21 @@ function SubmitLetter() {
   const memberSelectHndlr = (e) => {
     setSelmem(e.target.value);
   };
+
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log("연결됨");
+    //날짜 생성
+    let formattedDate = new Intl.DateTimeFormat("ko-KR", {
+      dateStyle: "full",
+      timeStyle: "short",
+    }).format(new Date());
+    //신규 팬레터 생성
     let newLetter = {
       id: uuid(),
       username: userName,
       text: letterContent,
       foward: selmem,
+      postedTime: formattedDate,
       portrait:
         "https://global.discourse-cdn.com/turtlehead/optimized/2X/c/c830d1dee245de3c851f0f88b6c57c83c69f3ace_2_250x250.png",
     };

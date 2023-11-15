@@ -11,4 +11,4 @@ let formattedDate = new Intl.DateTimeFormat("ko-KR", {
   dateStyle: "full",
   timeStyle: "short",
 }).format(new Date());
-console.log(formattedDate);
+console.log(typeof formattedDate);

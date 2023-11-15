@@ -43,6 +43,8 @@ function EachLetter({ letter }) {
       <div>
         <p>By. {letter.username}</p>
         <br />
+        <p>{letter.postedTime}</p>
+        <br />
         <p>To. {letter.foward}</p>
         <br />
         <StP>{letter.text}</StP>
