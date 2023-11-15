@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { setFanLetters } from "redux/modules/fanletter";
 import ReusableButton from "components/ReusableButton";
+import ReusableModal from "components/ReusableModal";
 
 //styled components
 const StDetailContainer = styled.section`
@@ -87,15 +88,23 @@ function Detail() {
 
   const [isEditing, setIsEditing] = useState(false);
   const [editText, setEditText] = useState(matchingLetter.text);
+  const [modalActivation, setModalActivation] = useState();
   const navigate = useNavigate();
 
   const deleteBtnHndlr = () => {
-    if (window.confirm("삭제하시겠습니까?")) {
-      let temp = fanLetters.filter((letter) => letter.id !== matchingLetter.id);
-      // ctx.setFanLetters(temp);
-      dispatch(setFanLetters(temp));
-      navigate("/");
-    }
+    setModalActivation({
+      title: "삭제 확인",
+      message: "한번 삭제된 메시지는 복구할 수 없습니다. 삭제하시겠습니까?",
+      btnMsg: "삭제",
+      btnFn: onDelete,
+    });
+    //기존 삭제 로직(모달 미사용)
+    // if (window.confirm("삭제하시겠습니까?")) {
+    //   let temp = fanLetters.filter((letter) => letter.id !== matchingLetter.id);
+    //   // ctx.setFanLetters(temp);
+    //   dispatch(setFanLetters(temp));
+    //   navigate("/");
+    // }
   };
 
   const editBtnHndlr = () => {
@@ -109,7 +118,13 @@ function Detail() {
       (letter) => letter.id == matchingLetter.id
     );
     if (editTarget[0].text.length === editRef.current.value.length) {
-      window.alert("수정 사항이 없는것 같네요");
+      setModalActivation({
+        title: "수정 확인",
+        message:
+          "변경된 내용이 없는것 같습니다. 내용이 변경된 경우에 [수정완료]버튼을 눌러주세요",
+      });
+
+      // window.alert("수정 사항이 없는것 같네요");
       setIsEditing((prev) => !prev);
     } else {
       let temp = fanLetters.filter((letter) => letter.id !== matchingLetter.id);
@@ -118,43 +133,64 @@ function Detail() {
       dispatch(setFanLetters([...temp, editTarget[0]]));
 
       setIsEditing((prev) => !prev);
-      navigate("/");
+      // navigate("/");
     }
   };
 
-  return (
-    <StDetailContainer>
-      <StLetterDetail>
-        <StSenderDiv>
-          <img src={matchingLetter.portrait} alt="" />
-          <div>
-            <p>{matchingLetter.username}</p>
-            <span>{matchingLetter.postedTime}</span>
-          </div>
-        </StSenderDiv>
+  const onClose = () => {
+    setModalActivation();
+  };
+  const onDelete = () => {
+    let temp = fanLetters.filter((letter) => letter.id !== matchingLetter.id);
+    // ctx.setFanLetters(temp);
+    dispatch(setFanLetters(temp));
+    navigate("/");
+  };
 
-        <StReceiverP>{matchingLetter.foward} 님에게...</StReceiverP>
-        {!isEditing && <p>{matchingLetter.text}</p>}
-        {isEditing && (
-          <StEditInput
-            value={editText}
-            onChange={editChangeHndlr}
-            ref={editRef}
-          />
-        )}
-        <StBtnDiv>
-          {!isEditing && (
-            <ReusableButton onClick={editBtnHndlr}>수정</ReusableButton>
-          )}
+  return (
+    <>
+      {modalActivation && (
+        <ReusableModal
+          title={modalActivation.title}
+          message={modalActivation.message}
+          btnMsg={modalActivation.btnMsg}
+          btnFn={modalActivation.btnFn}
+          onClose={onClose}
+        />
+      )}
+      <StDetailContainer>
+        <StLetterDetail>
+          <StSenderDiv>
+            <img src={matchingLetter.portrait} alt="" />
+            <div>
+              <p>{matchingLetter.username}</p>
+              <span>{matchingLetter.postedTime}</span>
+            </div>
+          </StSenderDiv>
+
+          <StReceiverP>{matchingLetter.foward} 님에게...</StReceiverP>
+          {!isEditing && <p>{matchingLetter.text}</p>}
           {isEditing && (
-            <ReusableButton onClick={editCompleteBtnHndlr}>
-              수정 완료
-            </ReusableButton>
+            <StEditInput
+              value={editText}
+              onChange={editChangeHndlr}
+              ref={editRef}
+            />
           )}
-          <ReusableButton onClick={deleteBtnHndlr}>삭제</ReusableButton>
-        </StBtnDiv>
-      </StLetterDetail>
-    </StDetailContainer>
+          <StBtnDiv>
+            {!isEditing && (
+              <ReusableButton onClick={editBtnHndlr}>수정</ReusableButton>
+            )}
+            {isEditing && (
+              <ReusableButton onClick={editCompleteBtnHndlr}>
+                수정 완료
+              </ReusableButton>
+            )}
+            <ReusableButton onClick={deleteBtnHndlr}>삭제</ReusableButton>
+          </StBtnDiv>
+        </StLetterDetail>
+      </StDetailContainer>
+    </>
   );
 }
 
