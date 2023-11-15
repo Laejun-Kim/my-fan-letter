@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import EachLetter from "./EachLetter";
 import { useSelector } from "react-redux";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFaceSadTear } from "@fortawesome/free-solid-svg-icons";
 
 const StLetters = styled.div`
   display: flex;
@@ -47,7 +49,15 @@ function Letters() {
   return (
     <StLetters>
       {filteredLetter.length === 0 && (
-        <p>아직 등록된 팬레터가 없어요! 팬레터를 보내볼까요?</p>
+        <>
+          <p>아직 등록된 팬레터가 없어요! 팬레터를 보내볼까요?</p>
+          <FontAwesomeIcon
+            icon={faFaceSadTear}
+            fade
+            size="2xl"
+            style={{ color: "#7a49b4" }}
+          />
+        </>
       )}
       {filteredLetter.map((letter) => {
         return <EachLetter key={letter.id} letter={letter} />;
