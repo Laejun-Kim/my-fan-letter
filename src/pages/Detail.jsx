@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { setFanLetters } from "redux/modules/fanletter";
+import ReusableButton from "components/ReusableButton";
 
 //styled components
 const StDetailContainer = styled.section`
@@ -142,11 +143,15 @@ function Detail() {
           />
         )}
         <StBtnDiv>
-          {!isEditing && <button onClick={editBtnHndlr}>수정</button>}
-          {isEditing && (
-            <button onClick={editCompleteBtnHndlr}>수정 완료</button>
+          {!isEditing && (
+            <ReusableButton onClick={editBtnHndlr}>수정</ReusableButton>
           )}
-          <button onClick={deleteBtnHndlr}>삭제</button>
+          {isEditing && (
+            <ReusableButton onClick={editCompleteBtnHndlr}>
+              수정 완료
+            </ReusableButton>
+          )}
+          <ReusableButton onClick={deleteBtnHndlr}>삭제</ReusableButton>
         </StBtnDiv>
       </StLetterDetail>
     </StDetailContainer>

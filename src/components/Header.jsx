@@ -55,6 +55,7 @@ const StTab = styled.li`
   text-align: center;
   user-select: none;
   cursor: pointer;
+  transition-duration: 0.2s;
 
   &:hover {
     scale: 1.1;
@@ -66,6 +67,7 @@ const StTab = styled.li`
       background-color: #971f977e;
       color: #fff;
       border:1px solid white;
+      scale:1.1;
     `}
 `;
 

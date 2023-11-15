@@ -3,6 +3,7 @@ import styled from "styled-components";
 import uuid from "react-uuid";
 import { useDispatch, useSelector } from "react-redux";
 import { setFanLetters } from "redux/modules/fanletter";
+import ReusableButton from "./ReusableButton";
 
 //styled-components
 const StForm = styled.form`
@@ -14,8 +15,12 @@ const StForm = styled.form`
   width: 90%;
   padding: 10px;
   gap: 10px;
+
   button {
-    padding: 0.8rem;
+    padding: 0.7rem;
+    color: white;
+    background-color: #734bad;
+    font-weight: 600;
   }
 `;
 
@@ -86,7 +91,7 @@ function SubmitLetter() {
           <option value="KAISA">카이사</option>
         </select>
       </span>
-      <button>메시지 보내기</button>
+      <ReusableButton>메시지 보내기</ReusableButton>
     </StForm>
   );
 }
