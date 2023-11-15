@@ -14,8 +14,8 @@ const StBackdrop = styled.div`
 const StModalDiv = styled.div`
   position: fixed;
   top: 30vh;
-  left: 10%;
-  width: 80%;
+  left: 20%;
+  width: 60%;
   z-index: 100;
   overflow: hidden;
   background-color: white; //임의추가

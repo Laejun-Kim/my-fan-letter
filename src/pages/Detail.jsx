@@ -117,9 +117,9 @@ function Detail() {
     let editTarget = fanLetters.filter(
       (letter) => letter.id == matchingLetter.id
     );
-    if (editTarget[0].text.length === editRef.current.value.length) {
+    if (editTarget[0].text === editRef.current.value) {
       setModalActivation({
-        title: "수정 확인",
+        title: "수정 오류",
         message:
           "변경된 내용이 없는것 같습니다. 내용이 변경된 경우에 [수정완료]버튼을 눌러주세요",
       });
@@ -127,13 +127,20 @@ function Detail() {
       // window.alert("수정 사항이 없는것 같네요");
       setIsEditing((prev) => !prev);
     } else {
-      let temp = fanLetters.filter((letter) => letter.id !== matchingLetter.id);
-      editTarget[0].text = editRef.current.value;
-      // ctx.setFanLetters([...temp, editTarget[0]]);
-      dispatch(setFanLetters([...temp, editTarget[0]]));
+      setModalActivation({
+        title: "수정 확인",
+        message: "이대로 수정하시겠습니까?",
+        btnMsg: "확인",
+        btnFn: onEditConfirm,
+      });
 
-      setIsEditing((prev) => !prev);
-      // navigate("/");
+      // let temp = fanLetters.filter((letter) => letter.id !== matchingLetter.id);
+      // editTarget[0].text = editRef.current.value;
+      // // ctx.setFanLetters([...temp, editTarget[0]]);
+      // dispatch(setFanLetters([...temp, editTarget[0]]));
+
+      // setIsEditing((prev) => !prev);
+      // // navigate("/");
     }
   };
 
@@ -145,6 +152,18 @@ function Detail() {
     // ctx.setFanLetters(temp);
     dispatch(setFanLetters(temp));
     navigate("/");
+  };
+  const onEditConfirm = () => {
+    let editTarget = fanLetters.filter(
+      (letter) => letter.id == matchingLetter.id
+    );
+    let temp = fanLetters.filter((letter) => letter.id !== matchingLetter.id);
+    editTarget[0].text = editRef.current.value;
+    // ctx.setFanLetters([...temp, editTarget[0]]);
+    dispatch(setFanLetters([...temp, editTarget[0]]));
+    setModalActivation();
+    setIsEditing((prev) => !prev);
+    // navigate("/");
   };
 
   return (

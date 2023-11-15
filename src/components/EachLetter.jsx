@@ -9,6 +9,7 @@ const StLetterDiv = styled.div`
   width: 90%;
   margin-top: 10px;
   padding: 10px;
+  border-radius: 0px 15px 15px 15px;
 
   div {
     width: 100%;
