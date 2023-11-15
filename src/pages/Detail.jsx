@@ -12,6 +12,7 @@ const StDetailContainer = styled.section`
   align-items: center;
   width: 100%;
   margin-top: 10px;
+  margin-bottom: 50px;
 `;
 
 const StLetterDetail = styled.section`
@@ -74,6 +75,7 @@ const StEditInput = styled.textarea`
 `;
 
 function Detail() {
+  //redux
   const fanLetters = useSelector((state) => state.fanLetter);
   const dispatch = useDispatch();
 

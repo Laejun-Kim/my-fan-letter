@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 //styled-components
 const StLetterDiv = styled.div`
   display: flex;
-  border: 1px solid #d1e0fa;
+  border: 1px solid #8248f6;
   width: 90%;
   margin-top: 10px;
   padding: 10px;
@@ -23,6 +23,10 @@ const StLetterDiv = styled.div`
   &:hover {
     scale: 1.05;
   }
+`;
+
+const StSpanforTime = styled.span`
+  font-size: small;
 `;
 
 const StP = styled.p`
@@ -43,7 +47,8 @@ function EachLetter({ letter }) {
       <div>
         <p>By. {letter.username}</p>
         <br />
-        <p>{letter.postedTime}</p>
+        <StSpanforTime>{letter.postedTime}</StSpanforTime>
+        <br />
         <br />
         <p>To. {letter.foward}</p>
         <br />

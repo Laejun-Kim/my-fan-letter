@@ -14,6 +14,9 @@ const StForm = styled.form`
   width: 90%;
   padding: 10px;
   gap: 10px;
+  button {
+    padding: 0.8rem;
+  }
 `;
 
 function SubmitLetter() {
@@ -75,7 +78,7 @@ function SubmitLetter() {
       </div>
 
       <span>
-        <label htmlFor="toWhom">누구에게 보내는 메시지인가요?</label>
+        <label htmlFor="toWhom">누구에게 보내는 메시지인가요?</label>&nbsp;
         <select onChange={memberSelectHndlr} name="" id="toWhom">
           <option value="AKALI">아칼리</option>
           <option value="AHRI">아리</option>
@@ -83,7 +86,7 @@ function SubmitLetter() {
           <option value="KAISA">카이사</option>
         </select>
       </span>
-      <button>제출하기</button>
+      <button>메시지 보내기</button>
     </StForm>
   );
 }
