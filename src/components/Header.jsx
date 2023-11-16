@@ -1,10 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import headerAllbg from "assets/pic/kdaHeaderBg.jpg";
-import headerAhribg from "assets/pic/cropped-ahri.jpg";
-import headerAkalibg from "assets/pic/cropped-akali.jpg";
-import headerEvelynbg from "assets/pic/cropped-evelyn.jpg";
-import headerKaisabg from "assets/pic/cropped-kaisa.jpg";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -20,20 +16,7 @@ import {
 const StHeaderContainer = styled.section`
   width: 100%;
   height: 250px;
-  background-image: ${(props) => {
-    switch (props.$chosenMember) {
-      case "AHRI":
-        return `url(${headerAhribg})`;
-      case "AKALI":
-        return `url(${headerAkalibg})`;
-      case "EVELYN":
-        return `url(${headerEvelynbg})`;
-      case "KAISA":
-        return `url(${headerKaisabg})`;
-      default:
-        return `url(${headerAllbg})`;
-    }
-  }};
+  background-image: url(${headerAllbg});
   background-size: cover;
   display: flex;
   flex-direction: column;
@@ -84,7 +67,6 @@ const StTab = styled.li`
 function Header() {
   //redux
   const chosenMember = useSelector((state) => state.chosenMember.chosenMember);
-  console.log(chosenMember);
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
@@ -92,7 +74,6 @@ function Header() {
   const [selectedTab, setSelectedTab] = useState("전체보기");
   let isAtHome = location.pathname === "/" ? true : false;
   function handleClick(event) {
-    // console.log(event.target.textContent);
     let member;
     switch (event.target.textContent) {
       case "전체보기":
@@ -125,7 +106,7 @@ function Header() {
     dispatch(setMemeber(ALL));
   };
   return (
-    <StHeaderContainer $chosenMember={chosenMember}>
+    <StHeaderContainer>
       <StHeaderTitle onClick={titleClickHndlr}>K/DA Fan Letters</StHeaderTitle>
       <StMemberSelect $shouldDisplay={isAtHome}>
         {tempArr.map((item) => {

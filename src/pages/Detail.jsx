@@ -114,8 +114,8 @@ function Detail() {
     if (editTarget[0].text === editRef.current.value) {
       setModalActivation({
         title: "수정 오류",
-        message:
-          "변경된 내용이 없는것 같습니다. 내용이 변경된 경우에 [수정완료]버튼을 눌러주세요",
+        message: `변경된 내용이 없는것 같습니다.
+        내용이 변경된 경우에 [수정완료]버튼을 눌러주세요`,
       });
 
       setIsEditing((prev) => !prev);
