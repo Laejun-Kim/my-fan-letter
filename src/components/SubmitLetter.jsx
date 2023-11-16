@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setFanLetters } from "redux/modules/fanletter";
 import ReusableButton from "./ReusableButton";
 import ReusableModal from "./ReusableModal";
+import { activateModal } from "redux/modules/modal-control";
 
 //styled-components
 const StForm = styled.form`
@@ -39,11 +40,12 @@ function SubmitLetter() {
   //redux
   const fanLetters = useSelector((state) => state.fanLetter);
   const chosenMember = useSelector((state) => state.chosenMember.chosenMember);
+  const modalControl = useSelector((state) => state.modalControl);
+  console.log(modalControl);
 
   const dispatch = useDispatch();
 
   //local states
-  const [modalActivation, setModalActivation] = useState();
   const [userName, setUserName] = useState("");
   const [letterContent, setLetterContent] = useState("");
   const [selmem, setSelmem] = useState("AKALI");
@@ -53,10 +55,13 @@ function SubmitLetter() {
   };
   const submitHandler = (e) => {
     e.preventDefault();
-    setModalActivation({
-      title: "메시지 등록",
-      message: "메시지가 등록되었습니다! 감사합니다 ❤️",
-    });
+
+    dispatch(
+      activateModal({
+        title: "메시지 등록",
+        message: "메시지가 등록되었습니다! 감사합니다 ❤️",
+      })
+    );
 
     //날짜 생성
     let formattedDate = new Intl.DateTimeFormat("ko-KR", {
@@ -73,12 +78,7 @@ function SubmitLetter() {
       portrait:
         "https://global.discourse-cdn.com/turtlehead/optimized/2X/c/c830d1dee245de3c851f0f88b6c57c83c69f3ace_2_250x250.png",
     };
-    // ctx.setFanLetters([...fanLetters, newLetter]);
     dispatch(setFanLetters([...fanLetters, newLetter]));
-  };
-
-  const onClose = () => {
-    setModalActivation();
   };
 
   //form 입력값을 초기화
@@ -89,13 +89,12 @@ function SubmitLetter() {
 
   return (
     <>
-      {modalActivation && (
+      {modalControl && (
         <ReusableModal
-          title={modalActivation.title}
-          message={modalActivation.message}
-          btnMsg={modalActivation.btnMsg}
-          btnFn={modalActivation.btnFn}
-          onClose={onClose}
+          title={modalControl.title}
+          message={modalControl.message}
+          btnMsg={modalControl.btnMsg}
+          btnFn={modalControl.btnFn}
         />
       )}
       <StForm onSubmit={submitHandler}>

@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setFanLetters } from "redux/modules/fanletter";
 import ReusableButton from "components/ReusableButton";
 import ReusableModal from "components/ReusableModal";
+import { activateModal, resetModal } from "redux/modules/modal-control";
 
 //styled components
 const StDetailContainer = styled.section`
@@ -91,6 +92,8 @@ const StTextAreaForContent = styled.textarea`
 function Detail() {
   //redux
   const fanLetters = useSelector((state) => state.fanLetter);
+  const modalControl = useSelector((state) => state.modalControl);
+
   const dispatch = useDispatch();
 
   const params = useParams();
@@ -101,15 +104,16 @@ function Detail() {
   // local states
   const [isEditing, setIsEditing] = useState(false);
   const [editText, setEditText] = useState(matchingLetter.text);
-  const [modalActivation, setModalActivation] = useState();
 
   const deleteBtnHndlr = () => {
-    setModalActivation({
-      title: "삭제 확인",
-      message: "한번 삭제된 메시지는 복구할 수 없습니다. 삭제하시겠습니까?",
-      btnMsg: "삭제",
-      btnFn: onDelete,
-    });
+    dispatch(
+      activateModal({
+        title: "삭제 확인",
+        message: "한번 삭제된 메시지는 복구할 수 없습니다. 삭제하시겠습니까?",
+        btnMsg: "삭제",
+        btnFn: onDelete,
+      })
+    );
   };
 
   const editBtnHndlr = () => {
@@ -123,30 +127,33 @@ function Detail() {
       (letter) => letter.id == matchingLetter.id
     );
     if (editTarget[0].text === editRef.current.value) {
-      setModalActivation({
-        title: "수정 오류",
-        message: `변경된 내용이 없는것 같습니다.
-        내용이 변경된 경우에 [수정완료]버튼을 눌러주세요`,
-      });
+      dispatch(
+        activateModal({
+          title: "수정 오류",
+          message: `변경된 내용이 없는것 같습니다.
+          내용이 변경된 경우에 [수정완료]버튼을 눌러주세요`,
+        })
+      );
 
       setIsEditing((prev) => !prev);
     } else {
-      setModalActivation({
-        title: "수정 확인",
-        message: "이대로 수정하시겠습니까?",
-        btnMsg: "확인",
-        btnFn: onEditConfirm,
-      });
+      dispatch(
+        activateModal({
+          title: "수정 확인",
+          message: "이대로 수정하시겠습니까?",
+          btnMsg: "확인",
+          btnFn: onEditConfirm,
+        })
+      );
     }
   };
 
   //모달에 전달할 함수들
-  const onClose = () => {
-    setModalActivation();
-  };
   const onDelete = () => {
     let temp = fanLetters.filter((letter) => letter.id !== matchingLetter.id);
     dispatch(setFanLetters(temp));
+    dispatch(resetModal());
+
     navigate("/");
   };
   const onEditConfirm = () => {
@@ -156,19 +163,18 @@ function Detail() {
     let temp = fanLetters.filter((letter) => letter.id !== matchingLetter.id);
     editTarget[0].text = editRef.current.value;
     dispatch(setFanLetters([...temp, editTarget[0]]));
-    setModalActivation();
+    dispatch(resetModal());
     setIsEditing((prev) => !prev);
   };
 
   return (
     <>
-      {modalActivation && (
+      {modalControl && (
         <ReusableModal
-          title={modalActivation.title}
-          message={modalActivation.message}
-          btnMsg={modalActivation.btnMsg}
-          btnFn={modalActivation.btnFn}
-          onClose={onClose}
+          title={modalControl.title}
+          message={modalControl.message}
+          btnMsg={modalControl.btnMsg}
+          btnFn={modalControl.btnFn}
         />
       )}
       <StDetailContainer>

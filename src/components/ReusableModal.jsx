@@ -1,6 +1,8 @@
 import React from "react";
 import ReusableButton from "./ReusableButton";
 import styled from "styled-components";
+import { resetModal } from "redux/modules/modal-control";
+import { useDispatch, useSelector } from "react-redux";
 
 const StBackdrop = styled.div`
   position: fixed;
@@ -45,9 +47,14 @@ const StModalDiv = styled.div`
 `;
 
 function ReusableModal(props) {
+  const dispatch = useDispatch();
+  const closeModal = () => {
+    dispatch(resetModal());
+  };
+
   return (
     <>
-      <StBackdrop onClick={props.onClose} />
+      <StBackdrop onClick={closeModal} />
       <StModalDiv>
         <header>
           <h2>{props.title}</h2>
@@ -61,7 +68,7 @@ function ReusableModal(props) {
               {props.btnMsg}
             </ReusableButton>
           )}
-          <ReusableButton onClick={props.onClose}>창 닫기</ReusableButton>
+          <ReusableButton onClick={closeModal}>창 닫기</ReusableButton>
         </footer>
       </StModalDiv>
     </>
