@@ -43,7 +43,9 @@ const StHeaderContainer = styled.section`
 const StHeaderTitle = styled.h1`
   color: white;
   font-size: 3rem;
-  text-shadow: 4px 0px 2px black;
+  text-shadow: 0 0 7px #8248f6, 0 0 10px #8248f6, 0 0 21px #8248f6,
+    0 0 42px #7a49b4, 0 0 82px #7a49b4, 0 0 92px #7a49b4, 0 0 102px #7a49b4,
+    0 0 151px #7a49b4;
   cursor: pointer;
 `;
 const StMemberSelect = styled.ul`
@@ -124,9 +126,7 @@ function Header() {
   };
   return (
     <StHeaderContainer $chosenMember={chosenMember}>
-      <StHeaderTitle onClick={titleClickHndlr}>
-        K/DA 팬레터 사이트
-      </StHeaderTitle>
+      <StHeaderTitle onClick={titleClickHndlr}>K/DA Fan Letters</StHeaderTitle>
       <StMemberSelect $shouldDisplay={isAtHome}>
         {tempArr.map((item) => {
           return (

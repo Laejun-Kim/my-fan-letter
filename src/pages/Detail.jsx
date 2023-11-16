@@ -39,6 +39,7 @@ const StSenderDiv = styled.div`
     margin-right: 10px;
     width: 100px;
     height: 100px;
+    border-radius: 100%;
   }
   span {
     font-size: small;

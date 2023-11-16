@@ -5,11 +5,12 @@ import { useNavigate } from "react-router-dom";
 //styled-components
 const StLetterDiv = styled.div`
   display: flex;
-  border: 1px solid #8248f6;
+  border: 2px solid #8248f6;
   width: 90%;
   margin-top: 10px;
   padding: 10px;
   border-radius: 0px 15px 15px 15px;
+  cursor: pointer;
 
   div {
     width: 100%;
@@ -19,6 +20,7 @@ const StLetterDiv = styled.div`
     width: 70px;
     height: 70px;
     margin-right: 10px;
+    border-radius: 100%;
   }
 
   &:hover {
