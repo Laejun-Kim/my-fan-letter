@@ -117,7 +117,6 @@ function Detail() {
           "변경된 내용이 없는것 같습니다. 내용이 변경된 경우에 [수정완료]버튼을 눌러주세요",
       });
 
-      // window.alert("수정 사항이 없는것 같네요");
       setIsEditing((prev) => !prev);
     } else {
       setModalActivation({

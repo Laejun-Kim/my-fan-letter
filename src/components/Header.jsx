@@ -7,6 +7,14 @@ import headerEvelynbg from "assets/pic/cropped-evelyn.jpg";
 import headerKaisabg from "assets/pic/cropped-kaisa.jpg";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import {
+  setMemeber,
+  ALL,
+  AHRI,
+  AKALI,
+  EVELYN,
+  KAISA,
+} from "redux/modules/chosen-member";
 
 //styled-components
 const StHeaderContainer = styled.section`
@@ -86,23 +94,24 @@ function Header() {
     let member;
     switch (event.target.textContent) {
       case "전체보기":
-        member = "ALL";
+        member = ALL;
         break;
       case "아칼리":
-        member = "AKALI";
+        member = AKALI;
         break;
       case "아리":
-        member = "AHRI";
+        member = AHRI;
         break;
       case "이블린":
-        member = "EVELYN";
+        member = EVELYN;
         break;
       case "카이사":
-        member = "KAISA";
+        member = KAISA;
         break;
     }
     // ctx.setChosenMember(member);
-    dispatch({ type: member });
+    // dispatch({ type: member });
+    dispatch(setMemeber(member));
     setSelectedTab(event.target.textContent);
   }
   const tempArr = ["전체보기", "아칼리", "아리", "이블린", "카이사"];
@@ -110,7 +119,8 @@ function Header() {
   const titleClickHndlr = () => {
     navigate("/");
     setSelectedTab("전체보기");
-    dispatch({ type: "ALL" });
+    // dispatch({ type: "ALL" });
+    dispatch(setMemeber(ALL));
   };
   return (
     <StHeaderContainer $chosenMember={chosenMember}>
@@ -118,28 +128,6 @@ function Header() {
         K/DA 팬레터 사이트
       </StHeaderTitle>
       <StMemberSelect $shouldDisplay={isAtHome}>
-        {/* <StTab onClick={handleClick} $clicked={selectedTab === "전체보기"}>
-          전체보기
-        </StTab>
-        <StTab onClick={handleClick} $clicked={selectedTab === "아칼리"}>
-          아칼리
-        </StTab>
-        <StTab onClick={handleClick} $clicked={selectedTab === "아리"}>
-          아리
-        </StTab>
-        <StTab onClick={handleClick} $clicked={selectedTab === "이블린"}>
-          이블린
-        </StTab>
-        <StTab onClick={handleClick} $clicked={selectedTab === "카이사"}>
-          카이사
-        </StTab> */}
-        {/* {tempArr.map((item) => {
-          return (
-            <li key={item} onClick={handleClick}>
-              {item}
-            </li>
-          );
-        })} */}
         {tempArr.map((item) => {
           return (
             <StTab
