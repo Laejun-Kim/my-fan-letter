@@ -74,8 +74,11 @@ const StReceiverP = styled.p`
 `;
 
 const StEditInput = styled.textarea`
-  min-height: 150px;
+  resize: none;
   width: 100%;
+  height: 200px;
+  background-color: #ffc0cb1d;
+  border-radius: 10px;
 `;
 const StTextAreaForContent = styled.textarea`
   resize: none;
