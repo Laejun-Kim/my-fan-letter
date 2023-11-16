@@ -23,6 +23,15 @@ const StForm = styled.form`
     font-weight: 600;
   }
 `;
+const StTextarea = styled.textarea`
+  width: 500px;
+  height: 3rem;
+`;
+const StDivForLetterContent = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 5px;
+`;
 
 function SubmitLetter() {
   //redux
@@ -33,10 +42,10 @@ function SubmitLetter() {
   const [userName, setUserName] = useState("");
   const [letterContent, setLetterContent] = useState("");
   const [selmem, setSelmem] = useState("AKALI");
+
   const memberSelectHndlr = (e) => {
     setSelmem(e.target.value);
   };
-
   const submitHandler = (e) => {
     e.preventDefault();
     //날짜 생성
@@ -71,9 +80,9 @@ function SubmitLetter() {
           required
         />
       </div>
-      <div>
+      <StDivForLetterContent>
         <label htmlFor="letterContent">메시지 : </label>
-        <input
+        <StTextarea
           type="text"
           id="letterContent"
           placeholder="응원 메시지를 적어주세요!"
@@ -81,7 +90,7 @@ function SubmitLetter() {
           onChange={(e) => setLetterContent(e.target.value)}
           required
         />
-      </div>
+      </StDivForLetterContent>
 
       <span>
         <label htmlFor="toWhom">누구에게 보내는 메시지인가요?</label>&nbsp;

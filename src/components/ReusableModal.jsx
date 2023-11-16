@@ -40,6 +40,7 @@ const StModalDiv = styled.div`
   footer button {
     margin-left: 20px;
     padding: 0.5em;
+    background-color: #e4daf0;
   }
 `;
 

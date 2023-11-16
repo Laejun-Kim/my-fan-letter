@@ -11,7 +11,10 @@ const StHomeContainer = styled.section`
   align-items: center;
   width: 100%;
   padding: 10px;
-  /* background-color: aliceblue; */
+
+  max-width: 1000px;
+  min-width: 500px;
+  margin: auto;
 `;
 
 function Home() {
@@ -24,7 +27,7 @@ function Home() {
       <SubmitLetter />
       <Letters />
       <ReusableButton onClick={storageClear}>
-        개발자용:LocalStorage 지우기
+        개발자용:LocalStorage 비우기
       </ReusableButton>
       {"누르면 초기상태로 reset >> 배포시엔 지울것!"}
     </StHomeContainer>

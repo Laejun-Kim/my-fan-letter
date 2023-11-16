@@ -2,6 +2,7 @@ import dummyData from "fakeData.json";
 
 const initialState = [...dummyData];
 
+//action types
 export const SET_FAN_LETTERS = "SET_FAN_LETTERS";
 
 //action creator
