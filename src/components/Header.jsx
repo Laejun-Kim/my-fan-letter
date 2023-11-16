@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import headerAllbg from "assets/pic/kdaHeaderBg.jpg";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import {
   setMemeber,
   ALL,
@@ -66,7 +66,6 @@ const StTab = styled.li`
 
 function Header() {
   //redux
-  const chosenMember = useSelector((state) => state.chosenMember.chosenMember);
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
