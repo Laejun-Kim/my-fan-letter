@@ -18,7 +18,7 @@ const StModalDiv = styled.div`
   width: 50%;
   z-index: 100;
   overflow: hidden;
-  background-color: white; //임의추가
+  background-color: white;
   border-radius: 10px;
 
   header {

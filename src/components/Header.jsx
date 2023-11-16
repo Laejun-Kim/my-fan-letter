@@ -35,7 +35,7 @@ const StHeaderContainer = styled.section`
 const StHeaderTitle = styled.h1`
   color: white;
   font-size: 3rem;
-  text-shadow: 4px 0px 2px black; //글자 잘 안보여서 넣은건데 더 좋은 방법있으면 ㄱㄱ
+  text-shadow: 4px 0px 2px black;
   cursor: pointer;
 `;
 const StMemberSelect = styled.ul`

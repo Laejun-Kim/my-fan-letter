@@ -29,6 +29,7 @@ function SubmitLetter() {
   const fanLetters = useSelector((state) => state.fanLetter);
   const dispatch = useDispatch();
 
+  //local states
   const [userName, setUserName] = useState("");
   const [letterContent, setLetterContent] = useState("");
   const [selmem, setSelmem] = useState("AKALI");

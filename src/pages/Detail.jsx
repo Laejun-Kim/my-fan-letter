@@ -98,13 +98,6 @@ function Detail() {
       btnMsg: "삭제",
       btnFn: onDelete,
     });
-    //기존 삭제 로직(모달 미사용)
-    // if (window.confirm("삭제하시겠습니까?")) {
-    //   let temp = fanLetters.filter((letter) => letter.id !== matchingLetter.id);
-    //   // ctx.setFanLetters(temp);
-    //   dispatch(setFanLetters(temp));
-    //   navigate("/");
-    // }
   };
 
   const editBtnHndlr = () => {
@@ -133,14 +126,6 @@ function Detail() {
         btnMsg: "확인",
         btnFn: onEditConfirm,
       });
-
-      // let temp = fanLetters.filter((letter) => letter.id !== matchingLetter.id);
-      // editTarget[0].text = editRef.current.value;
-      // // ctx.setFanLetters([...temp, editTarget[0]]);
-      // dispatch(setFanLetters([...temp, editTarget[0]]));
-
-      // setIsEditing((prev) => !prev);
-      // // navigate("/");
     }
   };
 
