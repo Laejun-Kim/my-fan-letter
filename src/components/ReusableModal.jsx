@@ -22,7 +22,7 @@ const StModalDiv = styled.div`
   border-radius: 10px;
 
   header {
-    background: #4f005f;
+    background: #6f0385;
     padding: 1rem;
   }
   header > h2 {

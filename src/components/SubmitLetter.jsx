@@ -27,6 +27,7 @@ const StForm = styled.form`
 const StTextarea = styled.textarea`
   width: 500px;
   height: 3rem;
+  resize: none;
 `;
 const StDivForLetterContent = styled.div`
   display: flex;

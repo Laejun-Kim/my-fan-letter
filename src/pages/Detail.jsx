@@ -33,6 +33,7 @@ const StSenderDiv = styled.div`
   width: 100%;
   padding: 10px;
   font-size: larger;
+  border-radius: 10px;
 
   margin: 0 0 20px 0;
   img {
@@ -75,6 +76,13 @@ const StReceiverP = styled.p`
 const StEditInput = styled.textarea`
   min-height: 150px;
   width: 100%;
+`;
+const StTextAreaForContent = styled.textarea`
+  resize: none;
+  width: 100%;
+  height: 200px;
+  background-color: transparent;
+  border-radius: 10px;
 `;
 
 function Detail() {
@@ -171,7 +179,11 @@ function Detail() {
           </StSenderDiv>
 
           <StReceiverP>{matchingLetter.foward} 님에게...</StReceiverP>
-          {!isEditing && <p>{matchingLetter.text}</p>}
+          {!isEditing && (
+            <StTextAreaForContent disabled>
+              {matchingLetter.text}
+            </StTextAreaForContent>
+          )}
           {isEditing && (
             <StEditInput
               value={editText}
