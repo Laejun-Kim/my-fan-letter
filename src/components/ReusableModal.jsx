@@ -2,7 +2,7 @@ import React from "react";
 import ReusableButton from "./ReusableButton";
 import styled from "styled-components";
 import { resetModal } from "redux/modules/modal-control";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 const StBackdrop = styled.div`
   position: fixed;
@@ -24,7 +24,7 @@ const StModalDiv = styled.div`
   border-radius: 10px;
 
   header {
-    background: #6f0385;
+    background: #7a49b4;
     padding: 1rem;
   }
   header > h2 {

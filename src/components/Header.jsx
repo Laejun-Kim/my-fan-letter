@@ -92,7 +92,6 @@ function Header() {
         break;
     }
     // ctx.setChosenMember(member);
-    // dispatch({ type: member });
     dispatch(setMemeber(member));
     setSelectedTab(event.target.textContent);
   }
@@ -101,7 +100,6 @@ function Header() {
   const titleClickHndlr = () => {
     navigate("/");
     setSelectedTab("전체보기");
-    // dispatch({ type: "ALL" });
     dispatch(setMemeber(ALL));
   };
   return (

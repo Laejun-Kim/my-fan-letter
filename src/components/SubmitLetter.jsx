@@ -41,8 +41,6 @@ function SubmitLetter() {
   const fanLetters = useSelector((state) => state.fanLetter);
   const chosenMember = useSelector((state) => state.chosenMember.chosenMember);
   const modalControl = useSelector((state) => state.modalControl);
-  console.log(modalControl);
-
   const dispatch = useDispatch();
 
   //local states

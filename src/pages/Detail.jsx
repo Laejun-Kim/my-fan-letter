@@ -3,9 +3,9 @@ import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { setFanLetters } from "redux/modules/fanletter";
+import { activateModal, resetModal } from "redux/modules/modal-control";
 import ReusableButton from "components/ReusableButton";
 import ReusableModal from "components/ReusableModal";
-import { activateModal, resetModal } from "redux/modules/modal-control";
 
 //styled components
 const StDetailContainer = styled.section`
@@ -189,9 +189,7 @@ function Detail() {
 
           <StReceiverP>{matchingLetter.foward} 님에게...</StReceiverP>
           {!isEditing && (
-            <StTextAreaForContent disabled>
-              {matchingLetter.text}
-            </StTextAreaForContent>
+            <StTextAreaForContent disabled value={matchingLetter.text} />
           )}
           {isEditing && (
             <StEditInput
