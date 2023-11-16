@@ -1,12 +1,7 @@
-import { createStore, combineReducers } from "redux";
+import { createStore } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
-import fanLetter from "redux/modules/fanletter";
-import chosenMember from "redux/modules/chosen-member";
+import { persistStore } from "redux-persist";
+import rootReducer from "./root-reducer";
 
-const rootReducer = combineReducers({
-  fanLetter,
-  chosenMember,
-});
-const store = createStore(rootReducer, composeWithDevTools());
-
-export default store;
+export const store = createStore(rootReducer, composeWithDevTools());
+export const persistor = persistStore(store);
