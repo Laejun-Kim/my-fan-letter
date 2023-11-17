@@ -2,7 +2,7 @@ import SubmitLetter from "components/SubmitLetter";
 import React from "react";
 import styled from "styled-components";
 import Letters from "components/Letters";
-import ReusableButton from "components/ReusableButton";
+import ReusableButton from "components/UI/ReusableButton";
 import Wrapper from "components/UI/Wrapper";
 
 const StHomeContainer = styled.section`

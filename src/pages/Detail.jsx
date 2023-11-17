@@ -4,8 +4,8 @@ import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { setFanLetters } from "redux/modules/fanletter";
 import { activateModal, resetModal } from "redux/modules/modal-control";
-import ReusableButton from "components/ReusableButton";
-import ReusableModal from "components/ReusableModal";
+import ReusableButton from "components/UI/ReusableButton";
+import ReusableModal from "components/UI/ReusableModal";
 import Wrapper from "components/UI/Wrapper";
 
 //styled components

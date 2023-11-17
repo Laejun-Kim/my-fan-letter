@@ -3,8 +3,8 @@ import styled from "styled-components";
 import uuid from "react-uuid";
 import { useDispatch, useSelector } from "react-redux";
 import { setFanLetters } from "redux/modules/fanletter";
-import ReusableButton from "./ReusableButton";
-import ReusableModal from "./ReusableModal";
+import ReusableButton from "./UI/ReusableButton";
+import ReusableModal from "./UI/ReusableModal";
 import { activateModal } from "redux/modules/modal-control";
 
 //styled-components
