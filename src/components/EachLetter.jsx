@@ -43,6 +43,7 @@ const StP = styled.p`
   white-space: nowrap;
   text-overflow: ellipsis;
   width: 80%;
+  padding-bottom: 5px;
 `;
 
 function EachLetter({ letter }) {
