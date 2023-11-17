@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import headerAllbg from "assets/pic/kdaHeaderBg.jpg";
+import headerAllbg2 from "assets/pic/kdaHeaderBg2.jpg";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import {
@@ -16,7 +17,7 @@ import {
 const StHeaderContainer = styled.section`
   width: 100%;
   height: 250px;
-  background-image: url(${headerAllbg});
+  background-image: url(${headerAllbg2});
   background-size: cover;
   display: flex;
   flex-direction: column;
