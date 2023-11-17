@@ -19,7 +19,6 @@ const StDetailContainer = styled.section`
   min-width: 700px;
   margin: auto;
 `;
-
 const StLetterDetail = styled.section`
   display: flex;
   flex-direction: column;
@@ -33,9 +32,7 @@ const StLetterDetail = styled.section`
   width: 90%;
   max-width: 900px;
   background-color: rgba(0, 0, 0, 0.1);
-
   backdrop-filter: blur(5px);
-
   color: white;
 `;
 const StSenderDiv = styled.div`
@@ -47,7 +44,6 @@ const StSenderDiv = styled.div`
   padding: 10px;
   font-size: larger;
   border-radius: 10px;
-
   margin: 0 0 20px 0;
   img {
     margin-right: 10px;
@@ -63,29 +59,29 @@ const StSenderDiv = styled.div`
     margin-bottom: 10px;
   }
 `;
-
 const StBtnDiv = styled.div`
   display: flex;
   justify-content: space-around;
   width: 100%;
   margin-top: 50px;
   button {
-    padding: 0.8rem;
-    width: 100px;
+    padding: 0.6rem;
+    width: 120px;
     cursor: pointer;
+    font-size: large;
   }
   button:first-of-type {
     background-color: #b0e0e6;
   }
   button:last-of-type {
     background-color: #cd3217;
+    color: white;
   }
 `;
 const StReceiverP = styled.p`
   font-size: large;
   margin-bottom: 10px;
 `;
-
 const StEditInput = styled.textarea`
   resize: none;
   width: 100%;
@@ -172,7 +168,6 @@ function Detail() {
     let temp = fanLetters.filter((letter) => letter.id !== matchingLetter.id);
     dispatch(setFanLetters(temp));
     dispatch(resetModal());
-
     navigate("/");
   };
   const onEditConfirm = () => {

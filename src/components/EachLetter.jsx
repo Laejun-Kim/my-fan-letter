@@ -14,7 +14,6 @@ const StLetterDiv = styled.div`
   background-color: rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(5px);
   color: white;
-
   cursor: pointer;
 
   div {

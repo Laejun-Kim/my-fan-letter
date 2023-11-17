@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
-import headerAllbg from "assets/pic/kdaHeaderBg.jpg";
 import headerAllbg2 from "assets/pic/kdaHeaderBg2.jpg";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   setMemeber,
   ALL,
@@ -68,11 +67,31 @@ const StTab = styled.li`
 function Header() {
   //redux
   const dispatch = useDispatch();
+  const selectedTab = useSelector((state) => state.chosenMember.chosenMember);
 
   const navigate = useNavigate();
   const location = useLocation();
-  const [selectedTab, setSelectedTab] = useState("전체보기");
   let isAtHome = location.pathname === "/" ? true : false;
+
+  const engToKor = (string) => {
+    switch (string) {
+      case "ALL":
+        return "전체보기";
+
+      case "AKALI":
+        return "아칼리";
+
+      case "AHRI":
+        return "아리";
+
+      case "EVELYN":
+        return "이블린";
+
+      case "KAISA":
+        return "카이사";
+    }
+  };
+
   function handleClick(event) {
     let member;
     switch (event.target.textContent) {
@@ -93,13 +112,11 @@ function Header() {
         break;
     }
     dispatch(setMemeber(member));
-    setSelectedTab(event.target.textContent);
   }
   const tempArr = ["전체보기", "아칼리", "아리", "이블린", "카이사"];
 
   const titleClickHndlr = () => {
     navigate("/");
-    setSelectedTab("전체보기");
     dispatch(setMemeber(ALL));
   };
   return (
@@ -111,7 +128,7 @@ function Header() {
             <StTab
               key={item}
               onClick={handleClick}
-              $clicked={selectedTab === `${item}`}
+              $clicked={engToKor(selectedTab) === `${item}`}
             >
               {item}
             </StTab>

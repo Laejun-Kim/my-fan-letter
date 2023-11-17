@@ -49,7 +49,7 @@ function SubmitLetter() {
   //local states
   const [userName, setUserName] = useState("");
   const [letterContent, setLetterContent] = useState("");
-  const [selmem, setSelmem] = useState("AKALI");
+  const [selmem, setSelmem] = useState();
 
   const memberSelectHndlr = (e) => {
     setSelmem(e.target.value);
@@ -88,6 +88,11 @@ function SubmitLetter() {
     setLetterContent("");
   }, [chosenMember, fanLetters]);
 
+  //선택된 멤버에 따라 select태그 value 변경
+  useEffect(() => {
+    setSelmem(chosenMember);
+  }, [chosenMember]);
+
   return (
     <>
       {modalControl && (
@@ -124,7 +129,13 @@ function SubmitLetter() {
 
         <span>
           <label htmlFor="toWhom">누구에게 보내는 메시지인가요?</label>&nbsp;
-          <select onChange={memberSelectHndlr} name="" id="toWhom">
+          <select
+            onChange={memberSelectHndlr}
+            value={selmem}
+            name=""
+            id="toWhom"
+          >
+            <option value="ALL">K/DA 전원</option>
             <option value="AKALI">아칼리</option>
             <option value="AHRI">아리</option>
             <option value="EVELYN">이블린</option>
