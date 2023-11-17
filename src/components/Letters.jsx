@@ -44,7 +44,7 @@ function Letters() {
       filteredLetter = fanLetters.filter((letter) => letter.foward === "KAISA");
       break;
   }
-  console.log(filteredLetter);
+  // console.log(filteredLetter);
 
   return (
     <StLetters>

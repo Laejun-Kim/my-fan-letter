@@ -11,8 +11,7 @@ const StLetterDiv = styled.div`
   margin-top: 10px;
   padding: 10px;
   border-radius: 0px 15px 15px 15px;
-  /* box-shadow: 0 0 4px #8248f6, 0 0 4px #8248f6, 0 0 4px #8248f6, 0 0 4px #7a49b4,
-    0 0 1px #7a49b4, 0 0 1px #7a49b4, 0 0 1px #7a49b4, 0 0 1px #7a49b4; */
+  background-color: rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(5px);
   color: white;
 

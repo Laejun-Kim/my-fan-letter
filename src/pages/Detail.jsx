@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
@@ -32,6 +32,7 @@ const StLetterDetail = styled.section`
   padding: 10px;
   width: 90%;
   max-width: 900px;
+  background-color: rgba(0, 0, 0, 0.1);
 
   backdrop-filter: blur(5px);
 
@@ -105,11 +106,13 @@ const StTextAreaForContent = styled.textarea`
 `;
 
 function Detail() {
-  window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  //스크롤 올리기 - 최초 한번만 실행
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  }, []);
   //redux
   const fanLetters = useSelector((state) => state.fanLetter);
   const modalControl = useSelector((state) => state.modalControl);
-
   const dispatch = useDispatch();
 
   const params = useParams();
