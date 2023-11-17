@@ -75,10 +75,10 @@ const StBtnDiv = styled.div`
     cursor: pointer;
   }
   button:first-of-type {
-    background-color: #b0e0e688;
+    background-color: #b0e0e6;
   }
   button:last-of-type {
-    background-color: #cd32179c;
+    background-color: #cd3217;
   }
 `;
 const StReceiverP = styled.p`

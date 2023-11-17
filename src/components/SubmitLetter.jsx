@@ -106,7 +106,7 @@ function SubmitLetter() {
             id="username"
             placeholder="당신의 이름을 적어주세요"
             value={userName}
-            onChange={(e) => setUserName(e.target.value)}
+            onChange={(e) => setUserName(e.target.value.trimStart())}
             required
           />
         </div>
@@ -117,7 +117,7 @@ function SubmitLetter() {
             id="letterContent"
             placeholder="응원 메시지를 적어주세요!"
             value={letterContent}
-            onChange={(e) => setLetterContent(e.target.value)}
+            onChange={(e) => setLetterContent(e.target.value.trimStart())}
             required
           />
         </StDivForLetterContent>
