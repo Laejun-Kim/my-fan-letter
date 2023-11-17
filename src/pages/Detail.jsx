@@ -6,31 +6,42 @@ import { setFanLetters } from "redux/modules/fanletter";
 import { activateModal, resetModal } from "redux/modules/modal-control";
 import ReusableButton from "components/ReusableButton";
 import ReusableModal from "components/ReusableModal";
+import Wrapper from "components/UI/Wrapper";
 
 //styled components
 const StDetailContainer = styled.section`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   width: 100%;
-  margin-top: 10px;
-  margin-bottom: 50px;
+  padding: 10px;
+  min-width: 700px;
+  margin: auto;
 `;
 
 const StLetterDetail = styled.section`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  border: 2px solid black;
+  border: 2px solid #8248f6;
+  border-radius: 0px 15px 15px 15px;
+  box-shadow: 0 0 7px #8248f6, 0 0 10px #8248f6, 0 0 21px #8248f6,
+    0 0 1px #7a49b4, 0 0 1px #7a49b4, 0 0 1px #7a49b4, 0 0 1px #7a49b4,
+    0 0 1px #7a49b4;
   padding: 10px;
   width: 90%;
+  max-width: 900px;
+
+  backdrop-filter: blur(5px);
+
+  color: white;
 `;
 const StSenderDiv = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  background-color: #7949b434;
+  background-color: #7949b47d;
   width: 100%;
   padding: 10px;
   font-size: larger;
@@ -80,6 +91,8 @@ const StEditInput = styled.textarea`
   height: 200px;
   background-color: #ffc0cb1d;
   border-radius: 10px;
+  color: white;
+  font-size: large;
 `;
 const StTextAreaForContent = styled.textarea`
   resize: none;
@@ -87,9 +100,12 @@ const StTextAreaForContent = styled.textarea`
   height: 200px;
   background-color: transparent;
   border-radius: 10px;
+  color: white;
+  font-size: large;
 `;
 
 function Detail() {
+  window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   //redux
   const fanLetters = useSelector((state) => state.fanLetter);
   const modalControl = useSelector((state) => state.modalControl);
@@ -168,7 +184,7 @@ function Detail() {
   };
 
   return (
-    <>
+    <Wrapper>
       {modalControl && (
         <ReusableModal
           title={modalControl.title}
@@ -211,7 +227,7 @@ function Detail() {
           </StBtnDiv>
         </StLetterDetail>
       </StDetailContainer>
-    </>
+    </Wrapper>
   );
 }
 

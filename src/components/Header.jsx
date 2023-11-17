@@ -91,7 +91,6 @@ function Header() {
         member = KAISA;
         break;
     }
-    // ctx.setChosenMember(member);
     dispatch(setMemeber(member));
     setSelectedTab(event.target.textContent);
   }

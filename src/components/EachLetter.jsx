@@ -7,9 +7,15 @@ const StLetterDiv = styled.div`
   display: flex;
   border: 2px solid #8248f6;
   width: 90%;
+
   margin-top: 10px;
   padding: 10px;
   border-radius: 0px 15px 15px 15px;
+  /* box-shadow: 0 0 4px #8248f6, 0 0 4px #8248f6, 0 0 4px #8248f6, 0 0 4px #7a49b4,
+    0 0 1px #7a49b4, 0 0 1px #7a49b4, 0 0 1px #7a49b4, 0 0 1px #7a49b4; */
+  backdrop-filter: blur(5px);
+  color: white;
+
   cursor: pointer;
 
   div {

@@ -9,14 +9,17 @@ import { activateModal } from "redux/modules/modal-control";
 
 //styled-components
 const StForm = styled.form`
-  border: 2px solid #734bad;
+  border: 3px solid #914bad;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 90%;
+
   padding: 10px;
   gap: 10px;
+  color: white;
+  backdrop-filter: blur(8px);
 
   button {
     padding: 0.7rem;
