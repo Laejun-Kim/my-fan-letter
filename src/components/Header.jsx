@@ -1,31 +1,22 @@
-import React, { useState, useContext } from "react";
+import React from "react";
 import styled from "styled-components";
-import headerAllbg from "assets/pic/kdaHeaderBg.jpg";
-import headerAhribg from "assets/pic/cropped-ahri.jpg";
-import headerAkalibg from "assets/pic/cropped-akali.jpg";
-import headerEvelynbg from "assets/pic/cropped-evelyn.jpg";
-import headerKaisabg from "assets/pic/cropped-kaisa.jpg";
+import headerAllbg2 from "assets/pic/kdaHeaderBg2.jpg";
 import { useLocation, useNavigate } from "react-router-dom";
-import FanLettersContext from "store/fan-letters";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  setMemeber,
+  ALL,
+  AHRI,
+  AKALI,
+  EVELYN,
+  KAISA,
+} from "redux/modules/chosen-member";
 
 //styled-components
 const StHeaderContainer = styled.section`
   width: 100%;
   height: 250px;
-  background-image: ${(props) => {
-    switch (props.$chosenMember) {
-      case "AHRI":
-        return `url(${headerAhribg})`;
-      case "AKALI":
-        return `url(${headerAkalibg})`;
-      case "EVELYN":
-        return `url(${headerEvelynbg})`;
-      case "KAISA":
-        return `url(${headerKaisabg})`;
-      default:
-        return `url(${headerAllbg})`;
-    }
-  }};
+  background-image: url(${headerAllbg2});
   background-size: cover;
   display: flex;
   flex-direction: column;
@@ -35,12 +26,12 @@ const StHeaderContainer = styled.section`
 const StHeaderTitle = styled.h1`
   color: white;
   font-size: 3rem;
-  /* margin-right: 400px; */
-  text-shadow: 3px 0px black; //글자 잘 안보여서 넣은건데 더 좋은 방법있으면 ㄱㄱ
+  text-shadow: 0 0 7px #8248f6, 0 0 10px #8248f6, 0 0 21px #8248f6,
+    0 0 42px #7a49b4, 0 0 82px #7a49b4, 0 0 92px #7a49b4, 0 0 102px #7a49b4,
+    0 0 151px #7a49b4;
   cursor: pointer;
 `;
 const StMemberSelect = styled.ul`
-  /* display: flex; */
   gap: 20px;
   margin-top: 50px;
   display: ${(props) =>
@@ -57,6 +48,7 @@ const StTab = styled.li`
   text-align: center;
   user-select: none;
   cursor: pointer;
+  transition-duration: 0.2s;
 
   &:hover {
     scale: 1.1;
@@ -68,73 +60,80 @@ const StTab = styled.li`
       background-color: #971f977e;
       color: #fff;
       border:1px solid white;
+      scale:1.1;
     `}
 `;
 
 function Header() {
-  const ctx = useContext(FanLettersContext);
+  //redux
+  const dispatch = useDispatch();
+  const selectedTab = useSelector((state) => state.chosenMember.chosenMember);
 
   const navigate = useNavigate();
   const location = useLocation();
-  const [selectedTab, setSelectedTab] = useState(null);
   let isAtHome = location.pathname === "/" ? true : false;
+
+  const engToKor = (string) => {
+    switch (string) {
+      case "ALL":
+        return "전체보기";
+
+      case "AKALI":
+        return "아칼리";
+
+      case "AHRI":
+        return "아리";
+
+      case "EVELYN":
+        return "이블린";
+
+      case "KAISA":
+        return "카이사";
+    }
+  };
+
   function handleClick(event) {
-    // console.log(event.target.textContent);
     let member;
     switch (event.target.textContent) {
       case "전체보기":
-        member = "ALL";
+        member = ALL;
         break;
       case "아칼리":
-        member = "AKALI";
+        member = AKALI;
         break;
       case "아리":
-        member = "AHRI";
+        member = AHRI;
         break;
       case "이블린":
-        member = "EVELYN";
+        member = EVELYN;
         break;
       case "카이사":
-        member = "KAISA";
+        member = KAISA;
         break;
     }
-    ctx.setChosenMember(member);
-    setSelectedTab(event.target.textContent);
+    dispatch(setMemeber(member));
   }
-  // const tempArr = ["전체보기", "아칼리", "아리", "이블린", "카이사"];
+  const tempArr = ["전체보기", "아칼리", "아리", "이블린", "카이사"];
 
   const titleClickHndlr = () => {
     navigate("/");
-    // setSelectedTab(null);
+    dispatch(setMemeber(ALL));
   };
   return (
-    <StHeaderContainer $chosenMember={ctx.chosenMember}>
-      <StHeaderTitle onClick={titleClickHndlr}>
-        K/DA 팬레터 사이트
-      </StHeaderTitle>
+    <StHeaderContainer>
+      <StHeaderTitle onClick={titleClickHndlr}>K/DA Fan Letters</StHeaderTitle>
       <StMemberSelect $shouldDisplay={isAtHome}>
-        <StTab onClick={handleClick} $clicked={selectedTab === "전체보기"}>
-          전체보기
-        </StTab>
-        <StTab onClick={handleClick} $clicked={selectedTab === "아칼리"}>
-          아칼리
-        </StTab>
-        <StTab onClick={handleClick} $clicked={selectedTab === "아리"}>
-          아리
-        </StTab>
-        <StTab onClick={handleClick} $clicked={selectedTab === "이블린"}>
-          이블린
-        </StTab>
-        <StTab onClick={handleClick} $clicked={selectedTab === "카이사"}>
-          카이사
-        </StTab>
-        {/* {tempArr.map((item) => {
+        {tempArr.map((item) => {
           return (
-            <li key={item} onClick={handleClick}>
+            <StTab
+              key={item}
+              onClick={handleClick}
+              $clicked={engToKor(selectedTab) === `${item}`}
+            >
               {item}
-            </li>
+            </StTab>
           );
-        })} */}
+        })}
       </StMemberSelect>
     </StHeaderContainer>
   );

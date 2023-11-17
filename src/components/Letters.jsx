@@ -1,7 +1,9 @@
-import React, { useContext } from "react";
+import React from "react";
 import styled from "styled-components";
 import EachLetter from "./EachLetter";
-import FanLettersContext from "store/fan-letters";
+import { useSelector } from "react-redux";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFaceSadTear } from "@fortawesome/free-solid-svg-icons";
 
 const StLetters = styled.div`
   display: flex;
@@ -17,40 +19,44 @@ const StLetters = styled.div`
 `;
 
 function Letters() {
-  const ctx = useContext(FanLettersContext);
+  //redux
+  const chosenMember = useSelector((state) => state.chosenMember.chosenMember);
+  const fanLetters = useSelector((state) => state.fanLetter);
 
+  //선택된 멤버에 따라 팬레터를 필터링 하는 로직
   let filteredLetter;
-  switch (ctx.chosenMember) {
+  switch (chosenMember) {
     case "ALL":
-      filteredLetter = ctx.fanLetters;
+      filteredLetter = fanLetters;
       break;
     case "AKALI":
-      filteredLetter = ctx.fanLetters.filter(
-        (letter) => letter.foward === "AKALI"
-      );
+      filteredLetter = fanLetters.filter((letter) => letter.foward === "AKALI");
       break;
     case "AHRI":
-      filteredLetter = ctx.fanLetters.filter(
-        (letter) => letter.foward === "AHRI"
-      );
+      filteredLetter = fanLetters.filter((letter) => letter.foward === "AHRI");
       break;
     case "EVELYN":
-      filteredLetter = ctx.fanLetters.filter(
+      filteredLetter = fanLetters.filter(
         (letter) => letter.foward === "EVELYN"
       );
       break;
     case "KAISA":
-      filteredLetter = ctx.fanLetters.filter(
-        (letter) => letter.foward === "KAISA"
-      );
+      filteredLetter = fanLetters.filter((letter) => letter.foward === "KAISA");
       break;
   }
 
-  // console.log(ctx.chosenMember);
   return (
     <StLetters>
       {filteredLetter.length === 0 && (
-        <p>아직 등록된 팬레터가 없어요! 팬레터를 보내볼까요?</p>
+        <>
+          <p>아직 등록된 팬레터가 없어요! 팬레터를 보내볼까요?</p>
+          <FontAwesomeIcon
+            icon={faFaceSadTear}
+            fade
+            size="2xl"
+            style={{ color: "#7a49b4" }}
+          />
+        </>
       )}
       {filteredLetter.map((letter) => {
         return <EachLetter key={letter.id} letter={letter} />;
