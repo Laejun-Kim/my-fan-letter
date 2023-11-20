@@ -29,10 +29,6 @@ function Home() {
       <StHomeContainer>
         <SubmitLetter />
         <Letters />
-        <ReusableButton onClick={storageClear}>
-          개발자용:LocalStorage 비우기
-        </ReusableButton>
-        {"누르면 초기상태로 reset >> 배포시엔 지울것!"}
       </StHomeContainer>
     </Wrapper>
   );

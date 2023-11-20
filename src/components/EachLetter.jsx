@@ -27,6 +27,7 @@ const StLetterDiv = styled.div`
     border-radius: 100%;
   }
   transition-duration: 0.2s;
+  overflow: hidden;
 
   &:hover {
     scale: 1.05;

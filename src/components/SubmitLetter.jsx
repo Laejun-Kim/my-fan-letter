@@ -110,6 +110,7 @@ function SubmitLetter() {
             type="text"
             id="username"
             placeholder="당신의 이름을 적어주세요"
+            autoComplete="off"
             value={userName}
             onChange={(e) => setUserName(e.target.value.trimStart())}
             required
